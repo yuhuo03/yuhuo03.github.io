@@ -1,75 +1,65 @@
-# academic-homepage
+# Yu Huo - Personal Academic Website
 
 ![Preview](assets/images/etc/preview.png)
 
-[![pages-build-deployment](https://github.com/luost26/academic-homepage/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/luost26/academic-homepage/actions/workflows/pages/pages-build-deployment)
-[![W3C Validation](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fluost26.github.io%2Facademic-homepage)](https://validator.nu/?doc=https%3A%2F%2Fluost26.github.io%2Facademic-homepage)
-[![Hits](https://hits.sh/github.com/luost26/academic-homepage.svg?view=today-total)](https://hits.sh/github.com/luost26/academic-homepage/)
-[![GitHub stars](https://img.shields.io/github/stars/luost26/academic-homepage)](https://github.com/luost26/academic-homepage)
-[![GitHub forks](https://img.shields.io/github/forks/luost26/academic-homepage)](https://github.com/luost26/academic-homepage/forks)
-<!-- [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fluost26%2Facademic-homepage&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com) -->
+[![pages-build-deployment](https://github.com/yuhuo03/yuhuo03.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/yuhuo03/yuhuo03.github.io/actions/workflows/pages/pages-build-deployment)
 
-A GitHub Pages (Jekyll) template for personal academic website. Click [here](https://luost.me/academic-homepage/) to see the demo.
+Personal academic website for Yu Huo (霍煜), a final-year undergraduate student at The Chinese University of Hong Kong (Shenzhen), specializing in Electronic and Computer Engineering with a focus on Computer Engineering.
 
-## User Community
+## About Me
 
-[🏡](https://luost.me/)
-[:star:](https://cch1999.github.io/)
-[:star:](https://kyrrego.github.io/)
-[:star:](https://ced3-han.github.io/)
-[:star:](https://lihengchen.com/)
-[:star:](https://hpwang-whu.github.io/)
-[:star:](https://zhang-yingyi.github.io/)
-[:star:](https://wby24.github.io/)
-[:star:](https://pengfeixu.com/)
-[:star:](https://boqiuphd.github.io/)
-[:star:](https://www.huabing.li/)
-[:star:](https://xiecuiying.github.io/)
-[:star:](https://hannyang.github.io/)
-[:star:](https://king-play.github.io/)
-[🤖](https://andrewcwlee.github.io)
-[:star:](https://laiyao1.github.io)
-[🌜](https://tmsultan.github.io)
-[🚀](https://zaxguo.github.io)
-[:gemini:](https://hongyang-du.github.io)
-[🇻‍🇳](https://thuanz123.github.io)
-[🧬](https://gdalba.github.io/)
+I am passionate about machine learning, artificial intelligence, and federated learning, with particular expertise in fairness-aware algorithms and optimization theory. Currently working as an AI Algorithm Engineer Intern at Huawei Technologies and serving as a Research Assistant at CUHK-Shenzhen.
 
-:hugs: Feel free to tell us if you are using this template for your website by creating an issue [here](https://github.com/luost26/academic-homepage/issues/new?assignees=&labels=&projects=&template=user-report.md&title=I+am+using+this+template%21).
+## Research Areas
 
+- **Machine Learning & AI**: Deep learning, federated learning, fairness-aware algorithms
+- **Optimization**: Mathematical optimization, auction theory, auto-bidding mechanisms
+- **Robotics**: Kinematics analysis, trajectory planning, collaborative robots
+- **Data Science**: System dynamics modeling, mathematical modeling, statistical analysis
 
-## Need Help?
+## Recent Publications
 
-If you run into **any** issues while using this template, or have suggestions for improvements, please don't hesitate to create an issue [here](https://github.com/luost26/academic-homepage/issues/new).
+- **AAAI 2025**: "Optimal Boost Design for Auto-bidding Mechanism with Publisher Quality Constraints" (CCF-A)
+- **ICIC 2025**: "FedGF: Layer-Wise Federated Learning with Group Fairness Guarantees" (CCF-C, Oral)
 
-### FAQs
-- [Need blogging feature?](https://github.com/luost26/academic-homepage/issues/13#issuecomment-2646371324)
+## Awards & Honors
 
+- Undergraduate Research Award (2025)
+- Dean's List (2022-2024)
+- Mathematical Contest in Modeling - Meritorious Winner (2025)
+- Ling Bowen II Scholarship (2022)
 
-## Getting Started
+## Contact
 
-1. First, fork this repository or click the "Use this template" button to create a new repository. The name of the repository should be `<your-github-username>.github.io` (click [here](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites) to learn more about naming a GitHub Pages repository).
-   - If you plan to customize the functionality or style of the template, and do not want to get updates from this repository, choose "Use this template".
-   - If you plan to only edit the content (biography, publications, news, etc.), and would like to get updates from this repository, choose "Fork".
-   - If you want to contribute to this project, fork the repository and submit a pull request.
+- **Email**: yuhuo@link.cuhk.edu.cn
+- **GitHub**: [yuhuo03](https://github.com/yuhuo03)
+- **Location**: Shenzhen, China
 
-### Running Locally (Debug & Preview)
+## Website Features
 
-2. Follow the **step 1** and **step 2** of the instruction [here](https://jekyllrb.com/docs/) to install prerequisites and jekyll.
+This website is built using Jekyll and includes:
 
-3. Clone your forked repository to your local machine.
+- **Personal Profile**: Education, experience, and awards
+- **Publications**: Research papers and conference presentations
+- **Projects**: Showcase of technical projects and competitions
+- **Skills**: Technical competencies and programming languages
+- **News**: Latest updates and achievements
 
-4. Run the following command in the root directory of the repository:
+## Local Development
 
-   ```bash
-   bundle exec jekyll serve
-   ```
+To run this website locally:
 
-5. Browse to the displayed URL to see the website.
+1. Install Ruby and Jekyll prerequisites
+2. Clone this repository
+3. Run `bundle install` to install dependencies
+4. Run `bundle exec jekyll serve` to start the local server
+5. Visit `http://localhost:4000` to view the website
 
-### Deploying to GitHub Pages
+## Template Credits
 
-2. Go to the repository settings and enable GitHub Pages. Detailed instructions can be found [here](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site).
+This website is based on the [academic-homepage](https://github.com/luost26/academic-homepage) template by luost26.
 
-3. Navigate to your created website, and follow the instructions displayed on the homepage (if any) to finalize the setup.
+---
+
+*Last updated: January 2025*
 
