@@ -1,61 +1,75 @@
-primary_name: "Your Name"
+primary_name: "Yu Huo"
 secondary_name: ""
-navbar_name: "Your Name"
+navbar_name: "Yu Huo"
 
 positions:
-- logo: /assets/images/badges/MIT_Social_circle.png  # Logo is optional
-  name: Position 1 with logo
-- name: Position 2 without logo
+- name: Bachelor of Engineering in Electronic and Computer Engineering (Computer Engineering Stream)
+  logo: /assets/images/badges/CUHK_SZ.png
+- name: AI Algorithm Engineer Intern at Huawei Technologies Co., Ltd.
+  logo: /assets/images/badges/Huawei.png
 
-
-email: "your@email.com"
-# cv_link: link-to-your-cv-file
-gscholar: xFmQpf4AAAAJ  # This is an example, replace it with your own Google Scholar ID
-github: your_github_id
-twitter: your_twitter_id  # Do not include the '@' symbol
+email: "yuhuo@link.cuhk.edu.cn"
+cv_link: /assets/cv/CV.pdf
+gscholar: gyDPWmIAAAAJ  # This is an example, replace it with your own Google Scholar ID
+github: yuhuo03
+# twitter: your_twitter_id  # Do not include the '@' symbol
 # wechat_qrcode: /assets/images/etc/wechat.jpg
 # wechat_prompt: >-
 #   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
 # linkedin: your-linked-in-id
-# orcid: 0000-0000-0000-0000
+orcid: 0009-0007-6642-0314
 
-short_bio_text_justify: false
+short_bio_text_justify: true
 short_bio: >-
   <p>
-    A <a href="https://en.wikipedia.org/wiki/Bicolor_cat" target="_blank">bicolor cat</a> is a cat with white fur combined with fur of some other colour, for example solid black, tabby, or colourpointed.
+    I am a final-year undergraduate student at The Chinese University of Hong Kong (Shenzhen), majoring in Electronic and Computer Engineering with a focus on Computer Engineering. My research interests lie in machine learning, artificial intelligence, and federated learning, with particular expertise in fairness-aware algorithms and optimization theory.
   </p>
   <p>
-    There are various patterns of a bicolour cat. These range from the Van-patterned (colour on the crown of the head 
-    and the tail only) to a solid colour with a throat locket or medallion. Bicolour coats are found in many cat breeds, 
-    as well as being common in domestic longhair and domestic shorthair cats.
+    Currently, I work as an AI Algorithm Engineer Intern at Huawei Technologies, where I contribute to the development of AI4Coding tools. I also serve as a Research Assistant at CUHK-Shenzhen, collaborating with Tencent Ads on optimal boost design for auto-bidding mechanisms. My research has been submitted and published in top-tier conferences including AAAI and ICIC.
   </p>
 
-portrait_url: /assets/images/photos/portrait.jpg
+portrait_url: /assets/images/photos/portrait.png
 portrait_caption: >-
-  Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
+  Yu Huo - AI Researcher and Computer Engineering Student
 
 education:
-- name: Massachusetts Institute of Technology
-  logo: /assets/images/badges/MIT_Social_circle.png
+- name: The Chinese University of Hong Kong (Shenzhen)
+  logo: /assets/images/badges/CUHK_SZ.png
   position: >- 
-    Department of Electrical Engineering and Computer Science <br/>
-    Ph.D. Student
-  date: Sep. 2024 - present
-- name: Peking University
-  logo: /assets/images/badges/PKU_red.png
-  position: B.S. in Computer Science
-  date: Sep. 2019 - Jul. 2021
+    School of Science and Engineering <br/>
+    Bachelor of Engineering in Electronic and Computer Engineering (Computer Engineering Stream)
+  date: Sep. 2022 - Present
+- name: The Chinese University of Hong Kong
+  logo: /assets/images/badges/CUHK_SZ.png
+  position: Summer School
+  date: Jul. 2024 - Aug. 2024
 
-# experience:
-# - name: Peking University
-#   logo: /assets/images/badges/PKU_red.png
-#   position: Research Intern
-#   date: Sep. 2019 - Jul. 2021
+experience:
+- name: Huawei Technologies Co., Ltd.
+  logo: /assets/images/badges/Huawei.png
+  position: AI Algorithm Engineer Intern
+  date: Jul. 2025 - Present
+- name: The Chinese University of Hong Kong (Shenzhen) & Tencent Ads
+  logo: /assets/images/badges/CUHK_SZ.png
+  position: Research Assistant
+  date: Sep. 2024 - Present
+- name: Shenzhen Institute of Artificial Intelligence and Robotics (AIRS)
+  logo: /assets/images/badges/AIRS.png
+  position: Research Assistant
+  date: Mar. 2024 - Mar. 2025
 
 awards:
-- name: Award Name 2
-  date: 2024
-- name: Award Name 1 
-  date: 2021
-- name: A quick brown fox jumps over the lazy dog and runs away award
-  date: 2021
+- name: Undergraduate Research Award
+  date: Mar. 2025
+- name: Dean's List (2023-2024 Academic Year)
+  date: Aug. 2024
+- name: Dean's List (2022-2023 Academic Year)
+  date: Jul. 2023
+- name: Ling Bowen II Scholarship (Provincial First Prize in High School Chemistry Competition)
+  date: Sep. 2022
+- name: Mathematical Contest in Modeling (MCM) - Meritorious Winner
+  date: Jan. 2025
+
+selected_publications:
+- aaai2025_optimal_boost
+- icic2025_fedgf
