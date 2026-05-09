@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Statement | Yu Huo</title>
+  <script src="../template.v2.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+  <!-- JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* All styles handled by blog/style.css */
+    strong { font-weight: 700; }
+    .byline { margin-top: 6px; }
+    .byline p { margin: 0; }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[','\\]'], ['$$','$$']],
+        packages: {'[+]': ['ams', 'textmacros']}
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="header-container">
+    <a class="back-link" href="../../index.html">Back to Home</a>
+    <div class="header-content">
+      <h1>Research Statement</h1>
+      <p>Human-AI interaction, Socially Aware NLP, and Future Research Directions</p>
+    </div>
+    <div class="header-meta">Updated: 2025-12-20</div>
+  </div>
+
+  <d-article>
+    <d-contents>
+      <nav>
+        <h4>Contents</h4>
+        <div><a href="#Overview">Overview</a></div>
+        <div><a href="#human-ai-interaction">Human-AI Interaction</a></div>
+        <div><a href="#socially-aware-nlp">Socially Aware NLP</a></div>
+        <div><a href="#future-plan">Future Plan</a></div>
+        <div><a href="#references">References</a></div>
+      </nav>
+    </d-contents>
+
+    <section id="Overview">
+      <h2>Overview</h2>
+      <p>
+        In my early research journey, I was thinking about how machine intelligence could learn from data to predict real-world patterns. This led me to my first research project, in which I sought to train a model to capture the spatio-temporal correlation of delay and model its propagation process within airport networks <a href="#ref-li2024fastca">[1]</a>. At the same time, Large Language Models (LLMs) emerged, demonstrating superior performance by learning from tremendous data, which led me to realize that language serves as a inherently more natural medium for encapsulating human knowledge, reasoning, and interaction. This insight suggests that language technologies act as a bridge to a deeper understanding of humanity itself. This conviction led my subsequent research to focus on <strong>Human-AI Interaction</strong> and <strong>Socially Aware NLP</strong>.
+      </p>
+    </section>
+
+    <section id="human-ai-interaction">
+      <h2>Human-AI Interaction</h2>
+      <p>
+        My first exploration began with training a financial multimodal LLM <a href="#ref-huang2025openfinllms">[2]</a>. When integrating the model into real human-AI workflows, we identified a critical gap: while the model excelled in static benchmarks, strict accuracy metrics failed to capture the reasoning and coordination capabilities required for dynamic interaction. This discrepancy led me to think that assessing intelligence requires observing how models behave and adapt during interaction, and that LLMs should ultimately learn from these dynamics. To quantify these missing capabilities, I developed a multi-turn, role-playing benchmark in which the LLM alternates between the roles between a domain expert and an assistant. This work was accepted to <em>Findings of NAACL 2025</em> <a href="#ref-yang2025ucfe">[3]</a>. Building on this perspective, I subsequently explored how agents might learn directly from interaction. For the EvoPresent Agent <a href="#ref-liu2025presenting">[4]</a>, I leveraged limited human preference data to train a vision-language model via reinforcement learning, equipping it with human-like aesthetic judgment. I then integrated this model into a self-improving loop that mimics human feedback dynamics. This mechanism allows the agent to iteratively critique, revise, and refine presentation slides, closely mirroring the human creative process.
+      </p>
+      <p>
+        While dynamic interaction improves model behavior, I argue that this is only the first step: <strong>to build truly human-like collaborators, we must also look inward to explore what the structure of the human mind can teach us about designing internal mechanisms of language models.</strong> In this line of work, I focus on abstracting structural principles from human cognition and translating them into new modeling paradigms. For example, in complex visual reasoning, humans do not process information linearly; they engage in a dynamic interplay between perception and reasoning, revisiting visual stimuli when uncertainty arises. Inspired by this cognitive pattern, DMLR <a href="#ref-liu2025reasoningminddynamicmultimodal">[5]</a> introduces a novel reasoning paradigm that interleaves perceptual steps directly into the latent space. By replacing rigid, sequential processing with this dynamic integration, the model effectively mimics human attention shifts and significantly reduces hallucinations. Similarly, SAE-free <a href="#ref-li-etal-2025-feature">[6]</a> takes inspiration from how humans reason using both abstract symbols and natural language. We utilized these symbolic and verbal representations as anchors to disentangle reasoning-specific features from the model's activations. This approach enables targeted steering of the model's internal states, thereby significantly boosting its reasoning performance. This work was accepted to <em>EMNLP 2025</em>.
+      </p>
+    </section>
+
+    <section id="socially-aware-nlp">
+      <h2>Socially Aware NLP</h2>
+      <p>
+        Moving beyond the internal cognitive structures of individual agents, my research scope extends to the collective dynamics that emerge when these agents interact. Language forms the most fundamental connections between individuals, and these connections, reinforced through continuous communication and interaction, ultimately give rise to the society we inhabit. Driven by these connections, these interactions among individuals accumulate and eventually manifest as macro-level collective patterns and emergent phenomena. As the foundational capabilities of LLMs continue to strengthen, their performance in role-playing, modeling human decision-making, and participating in social contexts has become increasingly credible. However, this also introduces new challenges: emergent social dynamics in the real world are difficult to observe directly, and we lack a controllable, high-fidelity setting to systematically study <strong>how micro-level decisions can generate macro-level social outcomes</strong>. Motivated by this gap, my subsequent work on TwinMarket <a href="#ref-yang2025twinmarket">[7]</a> builds a controllable and scalable financial market environment in which LLM agents can engage in realistic trading, interaction, and strategic adaptation, enabling us to observe emergent social patterns arising from the accumulation of individual behaviors. TwinMarket successfully reproduced emergent market dynamics like bubbles and crashes and have garnered significant attentions from community. This work was accepted to <em>NeurIPS 2025</em> and received the Best Paper Award at the <em>ICLR 2025 Financial AI Workshop</em>.
+      </p>
+    </section>
+
+    <section id="future-plan">
+      <h2>Future Plan</h2>
+      <p>
+        I aim to further explore the social intelligence of LLMs and build <strong>foundation social agents</strong> capable of understanding, adapting, and behaving intelligently within complex <strong>human-centered environments</strong>. My research vision consists of two complementary directions: <strong>1. At the micro level</strong>, I plan to investigate how LLM agents can learn and adapt through interaction. This involves designing learning algorithms that allow agents to continuously update their internal strategies, reason under uncertainty, and exhibit human-like decision-making in dynamic social contexts. <strong>2. At the macro level</strong>, I aim to build interactive agent societies that allow us to study coordination, cooperation, and competition at scale. In such multi-agent environments, we can observe how agents negotiate, form strategies, develop norms, and adapt to the behavior of others. By scaling the complexity of the social environment, I hope to create simulation frameworks in which agents not only interact, but actually learn from the social dynamics themselves.
+      </p>
+      <figure style="margin: 26px 0; text-align: center;">
+        <img src="../img/overview.png" alt="Overview of research directions and future plan" style="max-width: 100%; height: auto;">
+      </figure>
+    </section>
+
+    <section id="references" class="references">
+      <h2>References</h2>
+      <ol>
+        <li id="ref-li2024fastca">
+          Chi Li, Xixian Qi, <strong>Yuzhe Yang</strong>, Zhuo Zeng, Lianmin Zhang, Jianfeng Mao.
+          <em>FAST-CA: Fusion-based Adaptive Spatial–Temporal Learning with Coupled Attention for Airport Network Delay Propagation Prediction.</em> Information Fusion, 107:102326, 2024.
+          <a href="https://doi.org/10.1016/j.inffus.2024.102326">Link</a>.
+        </li>
+        <li id="ref-huang2025openfinllms">
+          Jimin Huang, Mengxi Xiao, Dong Li, Zihao Jiang, <strong>Yuzhe Yang</strong>, Yifei Zhang, Lingfei Qian, Yan Wang, Xueqing Peng, Yang Ren, Ruoyu Xiang, Zhengyu Chen, Xiao Zhang, Yueru He, Weiguang Han, Shunian Chen, Lihang Shen, Daniel Kim, Yangyang Yu, Yupeng Cao, Zhiyang Deng, Haohang Li, Duanyu Feng, Yongfu Dai, VijayaSai Somasundaram, Peng Lu, Guojun Xiong, Zhiwei Liu, Zheheng Luo, Zhiyuan Yao, Ruey-Ling Weng, Meikang Qiu, Kaleb E Smith, Honghai Yu, Yanzhao Lai, Min Peng, Jian-Yun Nie, Jordan W. Suchow, Xiao-Yang Liu, Benyou Wang, Alejandro Lopez-Lira, Qianqian Xie, Sophia Ananiadou, Junichi Tsujii.
+          <em>Open-FinLLMs: Open Multimodal Large Language Models for Financial Applications.</em> arXiv preprint arXiv:2408.11878, 2025.
+          <a href="https://arxiv.org/abs/2408.11878">Link</a>.
+        </li>
+        <li id="ref-yang2025ucfe">
+          <strong>Yuzhe Yang</strong>*, Yifei Zhang*, Yan Hu*, Yilin Guo, Ruoli Gan, Yueru He, Mingcong Lei, Xiao Zhang, Haining Wang, Qianqian Xie, Jimin Huang, Honghai Yu, Benyou Wang.
+          <em>UCFE: A User-Centric Financial Expertise Benchmark for Large Language Models.</em> Findings of NAACL 2025.
+          <a href="https://aclanthology.org/2025.findings-naacl.300/">Link</a>.
+        </li>
+        <li id="ref-liu2025presenting">
+          Chengzhi Liu*, <strong>Yuzhe Yang</strong>*, Kaiwen Zhou, Zhen Zhang, Yue Fan, Yanan Xie, Peng Qi, Xin Eric Wang.
+          <em>Presenting a Paper is an Art: Self-Improvement Aesthetic Agents for Academic Presentations.</em> arXiv preprint arXiv:2510.05571, 2025.
+          <a href="https://arxiv.org/abs/2510.05571">Link</a>.
+        </li>
+        <li id="ref-liu2025reasoningminddynamicmultimodal">
+          Chengzhi Liu*, <strong>Yuzhe Yang</strong>*, Yue Fan, Qingyue Wei, Sheng Liu, Xin Eric Wang.
+          <em>Reasoning Within the Mind: Dynamic Multimodal Interleaving in Latent Space.</em> arXiv preprint arXiv:2512.12623, 2025.
+          <a href="https://arxiv.org/abs/2512.12623">Link</a>.
+        </li>
+        <li id="ref-li-etal-2025-feature">
+          Zihao Li*, Xu Wang*, <strong>Yuzhe Yang</strong>, Ziyu Yao, Haoyi Xiong, Mengnan Du.
+          <em>Feature Extraction and Steering for Enhanced Chain-of-Thought Reasoning in Language Models.</em> EMNLP 2025.
+          <a href="https://aclanthology.org/2025.emnlp-main.552/">Link</a>.
+        </li>
+        <li id="ref-yang2025twinmarket">
+          <strong>Yuzhe Yang</strong>*, Yifei Zhang*, Minghao Wu*, Kaidi Zhang, Yunmiao Zhang, Honghai Yu, Yan Hu, Benyou Wang.
+          <em>TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets.</em> NeurIPS 2025.
+          <span style="color: var(--prompt); font-weight: bold;">Best Paper Award</span> (ICLR 2025 Financial AI Workshop).
+          <a href="https://arxiv.org/abs/2502.01506">Link</a>.
+        </li>
+      </ol>
+    </section>
+  </d-article>
+
+  <script src="../contents_bar.js"></script>
+</body>
+</html>

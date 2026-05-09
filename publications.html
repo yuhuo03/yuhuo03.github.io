@@ -1,32 +1,87 @@
----
-layout: default
-title : Publications
-navbar_title: Publications
-body_attr: >-
-  data-spy="scroll" data-target="#navbar-year" data-offset="100"
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Publications - Yu Huo</title>
+    <meta name="author" content="Yu Huo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="src/stylesheet.css" />
+    <link rel="icon" href="./src/logo/CUHK_simple.svg" type="image/svg+xml" />
+    <!-- JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YE837RNHM5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-YE837RNHM5");
+    </script>
+  </head>
 
-{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
+  <body>
+    <table class="main-container">
+      <tbody>
+        <tr class="zero-padding">
+          <td class="zero-padding">
+            <!-- Page header -->
+            <table class="content-table">
+              <tbody>
+                <tr>
+                  <td class="section-padding" style="padding-top: 20px;">
+                    <a href="index.html" class="read-more" style="font-size:12px;">$ cd ~/</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-<div class="row">
-    <div class="col-12 col-lg-10">
-        {% for year in pubs_by_year %}
-        {% assign num_papers = year.items | size %}
-        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
-        <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
-            {% for item in year.items %}
-                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
-            {% endfor %}
-        </div>
-        {% endfor %}
-    </div>
+            <!-- Publications Section -->
+            <table id="publications" class="content-table">
+              <tbody id="publications-container">
+                <!-- Content will be populated by JS -->
+              </tbody>
+            </table>
 
-    <div class="col-2 d-none d-lg-block">
-        <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
-            {% for year in pubs_by_year %}
-            <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
-            {% endfor %}
-        </div>
-    </div>
-
-</div>
+            <!-- Footer Section -->
+            <table class="content-table">
+              <tbody>
+                <tr>
+                  <td class="zero-padding">
+                    <br />
+                    <div class="footer-center">
+                      <div class="clustermap-wrap">
+                        <script
+                          type="text/javascript"
+                          id="clustrmaps"
+                          src="//cdn.clustrmaps.com/map_v2.js?cl=1f2328&w=300&t=tt&d=xoDg7VaCrLXmmLZN9tIoONrsj5uu62Bt8Fx4GVA9cuM&co=f6f8fa&ct=d0d7de&cmo=1a7f37&cmn=0969da"
+                        ></script>
+                      </div>
+                    </div>
+                    <p class="footer-text">
+                      2024-2026 &copy; Yu Huo
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="src/js/publications.js"></script>
+    <script src="src/js/render.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderPublications("publications-container", () => true, false);
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> beca795 (Initial commit: personal homepage with terminal/code aesthetic)

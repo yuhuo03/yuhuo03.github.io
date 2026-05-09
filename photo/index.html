@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Photo Gallery - Yu Huo</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YE837RNHM5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YE837RNHM5');
+  </script>
+</head>
+<body>
+  <section id="hero">
+    <div class="hero-video-wrapper">
+      <video id="hero-video" autoplay muted loop playsinline>
+        <source src="img-hdr-4k/hdr-1.mp4" type="video/mp4" onerror="this.style.display='none'" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="hero-overlay">
+        <div class="hero-content">
+          <div class="hero-main">
+            <h1 class="title">Photo<br>Gallery</h1>
+          </div>
+          <nav class="navigation">
+            <a href="/">Home</a>
+          </nav>
+          <div class="hero-footer">
+            <div class="credit">by Yu Huo</div>
+            <div class="inspiration-text">
+              <h1 class="text">Inspiration<br>comes<br>of working.</h1>
+            </div>
+            <div class="scroll-arrow"><i></i></div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="gallery-section">
+    <!-- Gallery items will be dynamically added here -->
+  </section>
+
+  <div class="lightbox">
+    <video muted playsinline>
+      <source src="" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    
+    <!-- 下载按钮 -->
+    <div class="download-button" title="下载HEIC原图">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    // 内存管理配置
+    const MEMORY_CONFIG = {
+      maxLoadedVideos: 18, // 最多同时加载的视频数量
+      cleanupDelay: 3000, // 离开视窗后延迟清理时间（毫秒）
+      retainMargin: '300px' // 保留缓冲区域
+    };
+
+    // 跟踪已加载的视频和清理定时器
+    let loadedVideos = new Map(); // 使用Map来追踪加载顺序
+    let cleanupTimers = new Map();
+    let currentVideoSrc = ''; // 当前显示的视频源
+
+    // Blur effect on scroll
+    window.addEventListener('scroll', () => {
+      const heroVideo = document.getElementById('hero-video');
+      const scrollPosition = window.scrollY;
+      const blurValue = Math.min(scrollPosition / 1000, 15);
+      heroVideo.style.filter = `blur(${blurValue}px)`;
+    });
+
+    // 清理视频缓存
+    function cleanupVideo(video, galleryItem) {
+      if (video.src) {
+        console.log('Cleaning up video:', video.dataset.src);
+        video.pause();
+        video.currentTime = 0;
+        video.removeAttribute('src');
+        video.load(); // 重置视频元素
+        loadedVideos.delete(video.dataset.src);
+        galleryItem.classList.remove('loaded');
+        galleryItem.classList.add('loading');
+      }
+    }
+
+    // 延迟清理视频
+    function scheduleCleanup(video, galleryItem) {
+      const videoSrc = video.dataset.src;
+      
+      // 清除之前的定时器
+      if (cleanupTimers.has(videoSrc)) {
+        clearTimeout(cleanupTimers.get(videoSrc));
+      }
+      
+      // 设置新的清理定时器
+      const timer = setTimeout(() => {
+        cleanupVideo(video, galleryItem);
+        cleanupTimers.delete(videoSrc);
+      }, MEMORY_CONFIG.cleanupDelay);
+      
+      cleanupTimers.set(videoSrc, timer);
+    }
+
+    // 取消清理计划
+    function cancelCleanup(videoSrc) {
+      if (cleanupTimers.has(videoSrc)) {
+        clearTimeout(cleanupTimers.get(videoSrc));
+        cleanupTimers.delete(videoSrc);
+      }
+    }
+
+    // 强制清理最旧的视频
+    function forceCleanupOldest() {
+      if (loadedVideos.size >= MEMORY_CONFIG.maxLoadedVideos) {
+        const [oldestSrc, oldestVideo] = loadedVideos.entries().next().value;
+        const galleryItem = oldestVideo.closest('.gallery-item');
+        cleanupVideo(oldestVideo, galleryItem);
+        console.log('Force cleaned oldest video:', oldestSrc);
+      }
+    }
+
+    // Intersection Observer for lazy loading with cleanup
+    const observerOptions = {
+      root: null,
+      rootMargin: MEMORY_CONFIG.retainMargin,
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target.querySelector('video');
+        const videoSrc = video.dataset.src;
+        
+        if (entry.isIntersecting) {
+          // 视频进入视窗
+          cancelCleanup(videoSrc);
+          
+          if (videoSrc && !video.src) {
+            // 检查是否需要清理旧视频
+            forceCleanupOldest();
+            
+            console.log('Loading video:', videoSrc);
+            video.src = videoSrc;
+            video.load();
+            entry.target.classList.add('loaded');
+            loadedVideos.set(videoSrc, video); // 记录加载时间顺序
+            
+            video.addEventListener('loadeddata', () => {
+              entry.target.classList.remove('loading');
+              video.autoplay = true;
+              video.play().catch(e => console.log('Video autoplay failed:', e));
+            });
+            
+            console.log('Total loaded videos:', loadedVideos.size);
+          } else if (video.src) {
+            // 视频已加载，更新在Map中的位置（移到最后）
+            loadedVideos.delete(videoSrc);
+            loadedVideos.set(videoSrc, video);
+          }
+        } else {
+          // 视频离开视窗
+          if (video.src) {
+            scheduleCleanup(video, entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // 内存使用监控
+    function monitorMemoryUsage() {
+      if ('memory' in performance) {
+        const memInfo = performance.memory;
+        console.log(`Memory Usage - Used: ${(memInfo.usedJSHeapSize / 1024 / 1024).toFixed(2)}MB, Total: ${(memInfo.totalJSHeapSize / 1024 / 1024).toFixed(2)}MB, Loaded Videos: ${loadedVideos.size}`);
+      }
+    }
+
+    // 定期监控内存使用情况
+    setInterval(monitorMemoryUsage, 15000);
+
+    // 获取HEIC路径
+    function getHeicPath(videoSrc) {
+      const fileName = videoSrc.split('/').pop().replace('.mp4', '.heic');
+      return `img-hdr-heic/${fileName}`;
+    }
+
+    // 下载HEIC文件
+    function downloadHeic() {
+      const heicPath = getHeicPath(currentVideoSrc);
+      const fileName = heicPath.split('/').pop();
+      
+      const link = document.createElement('a');
+      link.href = heicPath;
+      link.download = fileName;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Load and display gallery videos with lazy loading
+    async function loadGallery() {
+      const gallerySection = document.querySelector('.gallery-section');
+      const videoUrls = Array.from({ length: 54 }, (_, i) => `img-hdr-4k/hdr-${i + 2}.mp4`);
+      
+      // 保持打乱顺序的逻辑
+      const shuffledUrls = [...videoUrls].sort(() => Math.random() - 0.5);
+      
+      shuffledUrls.forEach((url) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item loading';
+        
+        const video = document.createElement('video');
+        video.muted = true;
+        video.playsInline = true;
+        video.preload = 'none';
+        video.dataset.src = url; // 存储在 data 属性中，稍后加载
+        
+        // 添加加载指示器
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'loading-indicator';
+        
+        div.appendChild(video);
+        div.appendChild(loadingIndicator);
+        gallerySection.appendChild(div);
+        
+        // 添加视频加载错误处理
+        video.addEventListener('error', () => {
+          div.classList.remove('loading');
+          div.classList.add('error');
+          loadedVideos.delete(url);
+          console.error('Video load error:', url);
+        });
+        
+        // 开始观察这个元素
+        observer.observe(div);
+      });
+    }
+
+    // Lightbox functionality
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxVideo = lightbox.querySelector('video');
+    const lightboxSource = lightboxVideo.querySelector('source');
+    const downloadButton = document.querySelector('.download-button');
+
+    document.querySelector('.gallery-section').addEventListener('click', (e) => {
+      const galleryItem = e.target.closest('.gallery-item');
+      if (galleryItem && !galleryItem.classList.contains('loading')) {
+        const video = galleryItem.querySelector('video');
+        if (video.src) {
+          currentVideoSrc = video.dataset.src; // 保存当前视频源
+          lightboxSource.src = video.src;
+          lightboxVideo.load();
+          lightboxVideo.play();
+          lightbox.style.display = 'block';
+        }
+      }
+    });
+
+    // 下载按钮点击事件
+    downloadButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      downloadHeic();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxVideo.pause();
+        lightboxVideo.currentTime = 0;
+        currentVideoSrc = '';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.style.display === 'block') {
+        lightbox.style.display = 'none';
+        lightboxVideo.pause();
+        lightboxVideo.currentTime = 0;
+        currentVideoSrc = '';
+      }
+    });
+
+    // 页面卸载时清理所有缓存
+    window.addEventListener('beforeunload', () => {
+      loadedVideos.forEach((video, src) => {
+        const galleryItem = video.closest('.gallery-item');
+        cleanupVideo(video, galleryItem);
+      });
+      cleanupTimers.forEach(timer => clearTimeout(timer));
+      console.log('Page unload - all caches cleared');
+    });
+
+    loadGallery();
+  </script>
+</body>
+</html>

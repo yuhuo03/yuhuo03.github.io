@@ -1,30 +1,464 @@
----
-layout: default
-title : Homepage
-navbar_title: Home
----
-{% include widgets/profile_card.html %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Yu Huo</title>
+    <meta name="author" content="Yu Huo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="src/stylesheet.css" />
+    <link rel="icon" href="./src/logo/CUHK_simple.svg" type="image/svg+xml" />
+    <!-- JetBrains Mono — monospace font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YE837RNHM5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-YE837RNHM5");
+    </script>
+    
+    <!-- News toggle functionality -->
+    <script>
+      function toggleNews() {
+        const moreNews = document.getElementById('moreNews');
+        const toggleBtn = document.getElementById('newsToggleBtn');
+        
+        if (moreNews.style.display === 'none') {
+          moreNews.style.display = 'block';
+          toggleBtn.innerHTML = '$ ls';
+        } else {
+          moreNews.style.display = 'none';
+          toggleBtn.innerHTML = '$ ls -a';
+        }
+      }
+    </script>
+    <style>
+      /* Email code tag styled in stylesheet.css */
+    </style>
+  </head>
 
-{% include widgets/debug_repo_name.html %}
+  <body>
+    <nav class="floating-toc" aria-label="Homepage sections">
+      <a href="#about" class="floating-toc-link" data-section="about">About</a>
+      <a href="#news" class="floating-toc-link" data-section="news">News</a>
+      <a href="#selected-publications" class="floating-toc-link" data-section="selected-publications">Selected Publications</a>
+      <a href="#education" class="floating-toc-link" data-section="education">Education</a>
+      <a href="#experience" class="floating-toc-link" data-section="experience">Experiences</a>
+      <!-- <a href="#misc" class="floating-toc-link" data-section="misc">Miscellaneous</a> -->
+      <a href="./src/pdf/yuhuo_cv.pdf" class="floating-toc-link" target="_blank" rel="noopener noreferrer">CV</a>
+    </nav>
+    <table class="main-container">
+      <tbody>
+        <tr class="zero-padding">
+          <td class="zero-padding">
+            <div class="intro-band" id="about">
+              <table class="content-table">
+                <tbody>
+                  <tr class="zero-padding profile-row">
+                    <td class="profile-section">
+                    <p class="text-center">
+                      <!-- <name>Yuzhe</name> <name-normal>(Toby)</name-normal> <name>Yang</name>  -->
+                      <name>Yu Huo</name>
+                    </p>
+                    
+                    <!-- Mobile Profile Image - Only visible on mobile -->
+                    <div class="mobile-profile-container">
+                      <div class="profile-container mobile-profile-size">
+                        <img class="profile-img" src="./src/img/profile.jpg" />
+                      </div>
+                      
+                                      <!-- Mobile Motto -->
+                      <div class="motto">// Keep Moving Forward</div>
+                      
+                      <!-- Mobile Social Media Links -->
+                      <div class="social-links">
+                        <a href='https://scholar.google.com/citations?user=gyDPWmIAAAAJ&hl=en' class="social-link">
+                          <img src="./src/logo/google-scholar.svg" alt="Google Scholar" class="social-icon">
+                        </a>
+                        <a href='https://github.com/yuhuo03' class="social-link">
+                          <img src="./src/logo/github.svg" alt="GitHub" class="social-icon">
+                        </a>
+                        <a href='https://orcid.org/0009-0007-6642-0314' class="social-link">
+                          <img src="./src/logo/orcid.svg" alt="ORCID" class="social-icon">
+                        </a>
+                        <a href='./src/pdf/yuhuo_cv.pdf' class="social-link">
+                          <img src="./src/logo/cv.svg" alt="Curriculum Vitae" class="social-icon">
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <p>
+                      I am an incoming M.Sc. student in Artificial Intelligence at
+                      <a href="https://www.cuhk.edu.hk/english/index.html">The Chinese University of Hong Kong</a>.
+                      I received my Bachelor's degree in Electronic and Computer Engineering, with a minor in Artificial Intelligence, from
+                      <a href="https://www.cuhk.edu.cn/en">The Chinese University of Hong Kong, Shenzhen</a>,
+                      where I was fortunate to work with
+                      <a href="https://myweb.cuhk.edu.cn/tangxiaoying">Prof. Xiaoying Tang</a>
+                      in <a href="https://xiaoyingtang-cuhk.github.io/en/index.html">T-Lab</a>.
+                    </p>
+                    <p>
+                      My research focuses on building large language models and agents that can reason, retrieve, and act reliably in complex, knowledge-intensive environments. <a href="blog/research-statement/index.html">[Read More]</a>
+                      e.g., Multimodal Reasoning (<a href="https://arxiv.org/abs/2601.21081"><i>ICML26'</i></a>), Code Intelligence (<a href="https://arxiv.org/abs/2601.03378"><i>ACL26'</i></a>), Agentic Systems (<a href="#"><i>NeurIPS26' Sub.</i></a>), Federated Learning (<a href="https://link.springer.com/chapter/10.1007/978-981-95-0011-6_33"><i>ICIC25'</i></a>).
+                    </p>
+                    <p>
+                      <b>Currently, I am seeking an internship opportunities.</b> If you are interested in my work or would like to discuss potential collaborations, please feel free to reach out via <a href="mailto:yuhuo@link.cuhk.edu.cn">email</a>.                    </p>
+                    <b>Email:</b> <span id="email">yuhuo[at]link[dot]cuhk[dot]edu[dot]cn</span>
+                    <br />
+                    <br />
+                  </td>
+                  <td class="profile-image-section">
+                  <div class="profile-container" style="width: 200px; margin-left: auto; margin-right: auto;">
+                    <img class="profile-img" src="./src/img/profile.jpg" />
+                  </div>
+                  
+                  <!-- Desktop Motto -->
+                      <div class="motto">// Keep Moving Forward</div>
+                  
+                  <!-- Social Media Links -->
+                  <div class="social-links">
+                    <a href='https://scholar.google.com/citations?user=gyDPWmIAAAAJ&hl=en' class="social-link">
+                      <img src="./src/logo/google-scholar.svg" alt="Google Scholar" class="social-icon">
+                    </a>
+                    <a href='https://github.com/yuhuo03' class="social-link">
+                      <img src="./src/logo/github.svg" alt="GitHub" class="social-icon">
+                    </a>
+                    <a href='https://orcid.org/0009-0007-6642-0314' class="social-link">
+                      <img src="./src/logo/orcid.svg" alt="ORCID" class="social-icon">
+                    </a>
+                    <a href='./src/pdf/yuhuo_cv.pdf' class="social-link">
+                      <img src="./src/logo/cv.svg" alt="Curriculum Vitae" class="social-icon">
+                    </a>
+                  </div>
+                  </td>
+                </tbody>
+              </table>
+            </div>
 
-{% include widgets/debug_url.html %}
+            <!-- News Section -->
+            <table class="content-table" id="news">
+              <tbody>
+                <tr>
+                  <td class="section-padding">
+                    <heading>News</heading>
+                    <div id="news-container">
+                      <!-- Content will be populated by JS -->
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-{% if site.data.display.homepage.show_experience %}
-    {% include widgets/experience_card.html %}
-{% endif %}
+            <!-- Research Section -->
+            <!-- <table class="content-table">
+              <tbody>
+                <tr>
+                  <td class="section-padding">
+                    <heading>Research</heading>
+                    <p>
+                      My vision is to build reliable and trustworthy AI systems that serve as a bridge between machine intelligence and human society. I am dedicated to enhancing the social intelligence of (vision) language models, empowering them to not only understand the principles of the physical world but also to gain insight into complex social environments, enabling reliable and meaningful interactions with humans. <a href="blog/research-statement/index.html" class="read-more-icon">▸</a>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table> -->
 
-{% if site.data.display.homepage.show_news %}
-    {% assign count_news = site.news | size %}
-    {% if count_news > 0 %}
-        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
-    {% endif %}
-{% endif %}
+<!-- Selected Publications Section -->
+<table id="selected-publications" class="content-table">
+  <tbody id="selected-publications-container">
+    <tr>
+      <td class="section-padding">
+        <heading>Selected Publications</heading>
+        <p>Only (co-)first author papers are listed. <span style="color: var(--muted);">(* indicates equal contribution)</span>
+<br /><a href="publications.html" class="read-more" style="font-size:12px;">$ cd ~/publications</a> <a href="https://scholar.google.com/citations?user=gyDPWmIAAAAJ&hl=en" class="read-more" style="font-size:12px;">$ cd ~/google-scholar</a></p>
+        <!-- Content will be populated by JS -->
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-{% if site.data.display.homepage.show_selected_publications %}
-    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-    {% 
-        include widgets/publication_card.html 
-        publications=pubs
-        title='<i class="fas fa-star"></i> Selected Publications'
-    %}
-{% endif %}
+<!-- Projects Section -->
+<!-- <table id="projects" class="content-table">
+  <tbody id="projects-container">
+  </tbody>
+</table> -->
+
+
+<!-- Education -->
+<table id="education" class="content-table">
+  <tbody>
+    <tr>
+      <td class="section-padding">
+        <heading>Education</heading>
+        <!-- CUHK (Hong Kong) -->
+        <div class="experience-item">
+          <img src="./src/logo/CUHK.svg" alt="CUHK Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>The Chinese University of Hong Kong</b>
+            <span class="experience-date">2026.09 – 2028.03 (Expected)</span>
+            <br />M.Sc. in Artificial Intelligence
+          </div>
+        </div>
+
+        <!-- CUHK-Shenzhen -->
+        <div class="experience-item">
+          <img src="./src/logo/CUHK.svg" alt="CUHK-Shenzhen Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>The Chinese University of Hong Kong, Shenzhen</b>
+            <span class="experience-date">2022.09 – 2026.05</span>
+            <br />B.Eng. in Electronic &amp; Computer Engineering
+            <br />Minor in Artificial Intelligence
+            <br />
+            <span class="experience-note">MGPA: 3.60/4.00, Top 6 in Major</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Experiences -->
+<table id="experience" class="content-table">
+  <tbody>
+    <tr>
+      <td class="section-padding">
+        <heading>Experiences</heading>
+
+        <!-- Shenzhen Research Institute of Big Data -->
+        <div class="experience-item">
+          <img src="./src/logo/SRIBD.png" alt="SRIBD Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>Shenzhen Research Institute of Big Data</b>
+            <span class="experience-date">2025.10 – Present</span>
+            <br />Research Assistant
+            <br />
+          </div>
+        </div>
+
+        <!-- Guangdong Provincial Key Laboratory / CUHK-Shenzhen -->
+        <div class="experience-item">
+          <img src="./src/logo/FNII.svg" alt="FNII Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>Guangdong Provincial Key Laboratory of Future Networks of Intelligence</b>
+            <span class="experience-date">2025.10 – Present</span>
+            <br />Research Assistant
+            <br />
+            Advised by <a href="https://myweb.cuhk.edu.cn/tangxiaoying">Prof. Xiaoying Tang</a>
+            <br />
+          </div>
+        </div>
+
+        <!-- Huawei -->
+        <div class="experience-item">
+          <img src="./src/logo/huawei.svg" alt="Huawei Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>Huawei Technologies Co., Ltd.</b>
+            <span class="experience-date">2025.07 – 2025.10</span>
+            <br />AI Algorithm Engineer
+            <br />
+          </div>
+        </div>
+
+        <!-- AIRS -->
+        <div class="experience-item">
+          <img src="./src/logo/AIRS.png" alt="AIRS Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>The Shenzhen Institute of Artificial Intelligence and Robotics for Society</b>
+            <span class="experience-date">2025.03 – 2025.07</span>
+            <br />Research Assistant
+            <br />
+            Advised by <a href="https://myweb.cuhk.edu.cn/tangxiaoying">Prof. Xiaoying Tang</a>
+            <br />
+          </div>
+        </div>
+
+        <!-- Tencent Online Advertising -->
+        <div class="experience-item">
+          <img src="./src/logo/Tencent.svg" alt="Tencent Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>Tencent Online Advertising BG</b>
+            <span class="experience-date">2024.10 – 2025.05</span>
+            <br />Researcher 
+            <br />
+          </div>
+        </div>
+
+
+
+        <!-- CUHK Data Science -->
+        <div class="experience-item">
+          <!-- Placeholder Logo -->
+          <img src="./src/logo/CUHK.svg" alt="CUHK Logo" class="experience-logo" />
+          <div class="experience-content">
+            <b>School of Science and Engineering, CUHK-Shenzhen</b>
+            <span class="experience-date">2023.03 – 2024.06</span>
+            <br />Undergraduate Research Assistant
+            <br />
+            Advised by <a href="https://myweb.cuhk.edu.cn/tangxiaoying">Prof. Xiaoying Tang</a>
+            <br />
+            <span class="experience-note">Undergraduate Research Award (2025, 2026)</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Services -->
+<table class="content-table">
+  <tbody>
+    <tr>
+      <td class="section-padding">
+        <heading>Services</heading>
+        <p>
+          <b>Conference Reviewer:</b> AAAI 2025, IJCNN 2026, ICML 2026, NeurIPS 2026
+        </p>
+        <p>
+          <b>Journal Reviewer:</b> TMC
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <!-- Miscellaneous Section -->
+            <!-- <table class="content-table" id="misc">
+              <tbody>
+                <tr>
+                  <td class="section-padding">
+                    <heading>Miscellaneous</heading>
+                    <p>
+                      📸 I am an amateur photographer with an interest in
+                      digital, film, and aerial photography, with a special
+                      passion for landscape photography 🏔️. You can find my
+                      photos on
+                      <a href="https://unsplash.com/@tobyyang">Unsplash</a> 🎞️.
+                      Also, you can visit my
+                      <a href="https://yuzheyang.com/photo"
+                        >HDR photo gallery</a
+                      >.
+                    </p>
+                    <img src="src/img/preview.png" width="100%" />
+                    <br />
+                  </td>
+                </tr>
+              </tbody>
+            </table> -->
+
+            <!-- Footer Section -->
+            <table class="content-table">
+              <tbody>
+                <tr>
+                  <td class="zero-padding">
+                    <br />
+                    <div class="footer-center">
+                    </div>
+                    <p class="footer-text">
+                      2025-2026 &copy; Yu Huo
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Typewriter loop for name -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const el = document.querySelector("name");
+        if (!el) return;
+
+        const fullText = "Yu Huo";
+        const TYPE_SPEED = 85; // ms per character
+
+        let pos = 0;
+        el.textContent = "";
+
+        function tick() {
+          pos++;
+          el.textContent = fullText.slice(0, pos);
+          if (pos < fullText.length) setTimeout(tick, TYPE_SPEED);
+          // cursor keeps blinking via CSS ::after once done
+        }
+
+        setTimeout(tick, 400);
+      });
+    </script>
+    <script src="src/js/publications.js"></script>
+    <script src="src/js/projects.js"></script>
+    <script src="src/js/news.js"></script>
+    <script src="src/js/render.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // We need to inject content inside the existing cell, not replace it entirely
+        // renderPublications assumes it's filling a container.
+        // Let's create a dedicated div inside the TD if we can, or adjust logic.
+        // Actually, my previous edit replaced the rows but left the header.
+        // Let's insert a div after the header paragraph.
+        
+        const container = document.getElementById("selected-publications-container").querySelector(".section-padding");
+        const listDiv = document.createElement("div");
+        listDiv.id = "selected-list";
+        container.appendChild(listDiv);
+
+        renderPublications("selected-list", (pub) => pub.selected, true);
+        renderProjects("projects-container");
+        renderNews("news-container", 5);
+
+        const tocLinks = Array.from(document.querySelectorAll(".floating-toc-link"));
+        const sectionLinks = tocLinks.filter(link => link.dataset.section);
+        const sections = sectionLinks
+          .map(link => document.getElementById(link.dataset.section))
+          .filter(Boolean);
+
+        sectionLinks.forEach(link => {
+          link.addEventListener("click", function(event) {
+            event.preventDefault();
+            const target = document.getElementById(link.dataset.section);
+            if (!target) return;
+
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+
+        const setActiveSection = sectionId => {
+          sectionLinks.forEach(link => {
+            link.classList.toggle("active", link.dataset.section === sectionId);
+          });
+        };
+
+        if (sections.length > 0) {
+          const observer = new IntersectionObserver(
+            entries => {
+              const visibleEntries = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+              if (visibleEntries.length > 0) {
+                setActiveSection(visibleEntries[0].target.id);
+              }
+            },
+            {
+              rootMargin: "-18% 0px -55% 0px",
+              threshold: [0.15, 0.35, 0.6],
+            }
+          );
+
+          sections.forEach(section => observer.observe(section));
+          setActiveSection(sections[0].id);
+        }
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> beca795 (Initial commit: personal homepage with terminal/code aesthetic)
