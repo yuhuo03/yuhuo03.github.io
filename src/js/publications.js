@@ -13,9 +13,9 @@ const publications = [
       "A visual Chain-of-Thought framework for progressive object assembly with interleaved textual plans and rendered intermediate states",
     image: "./src/img/SoT.png",
     links: [
-      { name: "Paper", url: "https://arxiv.org/abs/2601.21081" },
+      { name: "paper", url: "https://arxiv.org/abs/2601.21081" },
       {
-        name: "Code",
+        name: "code",
         url: "https://anonymous.4open.science/r/16FE/",
       },
       {
@@ -40,9 +40,9 @@ const publications = [
       "A coalition-aware context filtering framework for repository-level code completion",
     image: "./src/img/RepoShapley.png",
     links: [
-      { name: "Paper", url: "https://arxiv.org/abs/2601.03378" },
+      { name: "paper", url: "https://arxiv.org/abs/2601.03378" },
       {
-        name: "Code",
+        name: "code",
         url: "https://github.com/yuhuo03/RepoShapley",
         id: "reposhapley-stars",
         repo: "yuhuo03/RepoShapley",
@@ -65,9 +65,9 @@ const publications = [
       "A group-structured skill retrieval framework for agent skill libraries",
     image: "./src/img/goskills.png",
     links: [
-      { name: "Paper", url: "https://arxiv.org/abs/XXXX" },
+      { name: "paper", url: "https://arxiv.org/abs/2605.06978" },
       {
-        name: "Code",
+        name: "code",
         url: "https://anonymous.4open.science/r/Group-of-Skills-E861",
       },
     ],
@@ -88,7 +88,7 @@ const publications = [
     image: "./src/img/code_reasoning_lifecycle.png",
     links: [
       {
-        name: "Paper",
+        name: "paper",
         url: "https://openreview.net/forum?id=N81uoJOEZ0",
       },
     ],
@@ -108,7 +108,7 @@ const publications = [
       "A dual-phase cognitive cascade framework for class-incremental semantic segmentation",
     image: "./src/img/cogcas.png",
     links: [
-      { name: "Paper", url: "https://arxiv.org/abs/2603.13874" },
+      { name: "paper", url: "https://arxiv.org/abs/2603.13874" },
     ],
     abstract:
       "Continual semantic segmentation (CSS) is a cornerstone task in computer vision that enables a wide range of downstream applications, but faces the catastrophic forgetting challenge. In conventional class-incremental semantic segmentation (CISS) frameworks using Softmax-based classification heads, catastrophic forgetting originates from competing logit outputs and task affiliation probability. We formulate these problems and provide a theoretical analysis to more deeply understand the limitations in existing CISS methods, particularly Strict Parameter Isolation (SPI). To address these challenges, we follow a dual-phase intuition from human annotators, and introduce Cognitive Cascade Segmentation (CogCaS), a novel dual-phase cascade formulation for CSS tasks in the CISS setting. By decoupling the task into class-existence detection and class-specific segmentation, CogCaS enables more effective continual learning, preserving previously learned knowledge while incorporating new classes. Using two benchmark datasets PASCAL VOC 2012 and ADE20K, we have shown significant improvements in a variety of challenging scenarios, particularly those with long sequence of incremental tasks, when compared to existing state-of-the-art methods.",
@@ -129,9 +129,9 @@ const publications = [
   //     "A self-improvement agent generating presentation videos from academic papers",
   //   image: "./src/img/EvoPresent.png",
   //   links: [
-  //     { name: "Paper", url: "https://arxiv.org/pdf/2510.05571" },
+  //     { name: "paper", url: "https://arxiv.org/pdf/2510.05571" },
   //     {
-  //       name: "Code",
+  //       name: "code",
   //       url: "https://github.com/eric-ai-lab/EvoPresent",
   //       id: "evopresent-stars",
   //       repo: "eric-ai-lab/EvoPresent",
@@ -165,11 +165,11 @@ const publications = [
     image: "./src/img/FedGF.png",
     links: [
       {
-        name: "Paper",
+        name: "paper",
         url: "https://link.springer.com/chapter/10.1007/978-981-95-0011-6_33",
       },
       {
-        name: "Code",
+        name: "code",
         url: "https://github.com/yuhuo03/FedGF",
         id: "fedgf-stars",
         repo: "yuhuo03/FedGF",
@@ -192,9 +192,9 @@ const publications = [
       "An optimal boost design framework for auto-bidding mechanisms with publisher quality constraints",
     image: "./src/img/q-Boost.png",
     links: [
-      { name: "Paper", url: "https://arxiv.org/abs/2508.08772" },
+      { name: "paper", url: "https://arxiv.org/abs/2508.08772" },
       {
-        name: "Code",
+        name: "code",
         url: "https://github.com/yuhuo03/q-Boost",
         id: "qboost-stars",
         repo: "yuhuo03/q-Boost",

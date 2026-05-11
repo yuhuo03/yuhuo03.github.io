@@ -46,15 +46,73 @@
   </head>
 
   <body>
-    <nav class="floating-toc" aria-label="Homepage sections">
-      <a href="#about" class="floating-toc-link" data-section="about">About</a>
-      <a href="#news" class="floating-toc-link" data-section="news">News</a>
-      <a href="#selected-publications" class="floating-toc-link" data-section="selected-publications">Selected Publications</a>
-      <a href="#education" class="floating-toc-link" data-section="education">Education</a>
-      <a href="#experience" class="floating-toc-link" data-section="experience">Experiences</a>
-      <!-- <a href="#misc" class="floating-toc-link" data-section="misc">Miscellaneous</a> -->
-      <a href="./src/pdf/yuhuo_cv.pdf" class="floating-toc-link" target="_blank" rel="noopener noreferrer">CV</a>
-    </nav>
+    <!-- CRT Phosphor Overlay -->
+    <div class="crt-overlay" aria-hidden="true">
+      <div class="crt-flicker"></div>
+      <div class="crt-vignette"></div>
+      <div class="crt-phosphor"></div>
+      <div class="crt-noise" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PGltYWdlIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbHRlcj0idXJsKCdjMCknIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=');"></div>
+    </div>
+
+    <!-- Command Palette -->
+    <div class="cmd-palette-backdrop" id="cmdBackdrop" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="cmd-palette" id="cmdPalette">
+        <div class="cmd-palette-header">
+          <span class="cmd-palette-prompt">search</span>
+          <input
+            type="text"
+            class="cmd-palette-input"
+            id="cmdInput"
+            placeholder="Type a command or search..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="cmd-palette-close" id="cmdClose" aria-label="Close command palette">[esc]</button>
+        </div>
+        <div class="cmd-palette-results" id="cmdResults">
+          <div class="cmd-palette-section-label">Navigation</div>
+        </div>
+        <div class="cmd-palette-footer">
+          <div class="cmd-palette-footer-keys">
+            <span class="cmd-palette-footer-key"><kbd>↑↓</kbd> navigate</span>
+            <span class="cmd-palette-footer-key"><kbd>↵</kbd> select</span>
+            <span class="cmd-palette-footer-key"><kbd>esc</kbd> close</span>
+          </div>
+          <span class="cmd-palette-footer-hint">Press <kbd>/</kbd> or <kbd>~</kbd> to toggle</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal window chrome -->
+    <div class="terminal-window">
+      <div class="terminal-titlebar">
+        <div class="terminal-titlebar-left">
+          <div class="terminal-dot terminal-dot-red"></div>
+          <div class="terminal-dot terminal-dot-yellow"></div>
+          <div class="terminal-dot terminal-dot-green"></div>
+          <div class="terminal-titlebar-title">yuhuo@home</div>
+          <div class="terminal-titlebar-path">~ / portfolio</div>
+        </div>
+        <div class="terminal-titlebar-right">zsh — 80×24</div>
+      </div>
+      <div class="terminal-body">
+        <nav class="floating-toc" aria-label="Homepage sections">
+          <div class="floating-toc-statusbar">
+            <div class="floating-toc-statusbar-left">
+              <span class="floating-toc-statusbar-prompt">❯</span>
+              <span>yuhuo</span>
+              <span class="floating-toc-sep">|</span>
+              <span>M.Sc. AI @ CUHK</span>
+              <span class="floating-toc-sep">|</span>
+              <span>Research: LLM &amp; Agents</span>
+            </div>
+            <div class="floating-toc-statusbar-right">
+              <span id="statusbarTime"></span>
+              <span class="floating-toc-sep">|</span>
+              <span>Press / or ~ for commands</span>
+            </div>
+          </div>
+        </nav>
     <table class="main-container">
       <tbody>
         <tr class="zero-padding">
@@ -64,10 +122,26 @@
                 <tbody>
                   <tr class="zero-padding profile-row">
                     <td class="profile-section">
-                    <p class="text-center">
-                      <!-- <name>Yuzhe</name> <name-normal>(Toby)</name-normal> <name>Yang</name>  -->
-                      <name>Yu Huo</name>
-                    </p>
+                    <div class="home-ascii-heading" role="heading" aria-level="1" aria-label="Yu Huo">
+                      <pre class="home-ascii-name" aria-hidden="true">██╗   ██╗██╗   ██╗    ██╗  ██╗██╗   ██╗ ██████╗
+╚██╗ ██╔╝██║   ██║    ██║  ██║██║   ██║██╔═══██╗
+ ╚████╔╝ ██║   ██║    ███████║██║   ██║██║   ██║
+  ╚██╔╝  ██║   ██║    ██╔══██║██║   ██║██║   ██║
+   ██║   ╚██████╔╝    ██║  ██║╚██████╔╝╚██████╔╝
+   ╚═╝    ╚═════╝     ╚═╝  ╚═╝ ╚═════╝  ╚═════╝</pre>
+                    </div>
+                    <div class="home-meta-rail" aria-label="Profile summary">
+                      <span class="home-meta-prompt">yuhuo@home</span>
+                      <span>~/portfolio</span>
+                      <span>incoming M.Sc. AI @ CUHK</span>
+                      <span>LLMs · agents · multimodal AI</span>
+                      <span class="home-meta-accent">open to internship</span>
+                    </div>
+                    <div class="home-command-line" aria-label="Animated terminal prompt">
+                      <span class="home-command-prompt">~/portfolio</span>
+                      <span id="homeCommandText" class="home-command-text"></span>
+                      <span class="home-command-cursor" aria-hidden="true"></span>
+                    </div>
                     
                     <!-- Mobile Profile Image - Only visible on mobile -->
                     <div class="mobile-profile-container">
@@ -106,10 +180,10 @@
                     </p>
                     <p>
                       My research focuses on building large language models and agents that can reason, retrieve, and act reliably in complex, knowledge-intensive environments. <a href="blog/research-statement/index.html">[Read More]</a>
-                      e.g., Multimodal Reasoning (<a href="https://arxiv.org/abs/2601.21081"><i>ICML26'</i></a>), Code Intelligence (<a href="https://arxiv.org/abs/2601.03378"><i>ACL26'</i></a>), Agentic Systems (<a href="#"><i>NeurIPS26' Sub.</i></a>), Federated Learning (<a href="https://link.springer.com/chapter/10.1007/978-981-95-0011-6_33"><i>ICIC25'</i></a>).
+                      e.g., Multimodal Reasoning (<a href="https://arxiv.org/abs/2601.21081"><i>ICML26'</i></a>), Code Intelligence (<a href="https://arxiv.org/abs/2601.03378"><i>ACL26'</i></a>), Agentic Systems (<a href="https://arxiv.org/pdf/2605.06978"><i>NeurIPS26' Sub.</i></a>), Federated Learning (<a href="https://link.springer.com/chapter/10.1007/978-981-95-0011-6_33"><i>ICIC25'</i></a>).
                     </p>
                     <p>
-                      <b>Currently, I am seeking an internship opportunities.</b> If you are interested in my work or would like to discuss potential collaborations, please feel free to reach out via <a href="mailto:yuhuo@link.cuhk.edu.cn">email</a>.                    </p>
+                      <b>Currently, I am seeking internship opportunities.</b> If you are interested in my work or would like to discuss potential collaborations, please feel free to reach out via <a href="mailto:yuhuo@link.cuhk.edu.cn">email</a>.                    </p>
                     <b>Email:</b> <span id="email">yuhuo[at]link[dot]cuhk[dot]edu[dot]cn</span>
                     <br />
                     <br />
@@ -147,7 +221,7 @@
               <tbody>
                 <tr>
                   <td class="section-padding">
-                    <heading>News</heading>
+                    <heading class="glitch" data-text="News">News</heading>
                     <div id="news-container">
                       <!-- Content will be populated by JS -->
                     </div>
@@ -175,9 +249,12 @@
   <tbody id="selected-publications-container">
     <tr>
       <td class="section-padding">
-        <heading>Selected Publications</heading>
-        <p>Only (co-)first author papers are listed. <span style="color: var(--muted);">(* indicates equal contribution)</span>
-<br /><a href="publications.html" class="read-more" style="font-size:12px;">$ cd ~/publications</a> <a href="https://scholar.google.com/citations?user=gyDPWmIAAAAJ&hl=en" class="read-more" style="font-size:12px;">$ cd ~/google-scholar</a></p>
+        <heading class="glitch" data-text="Selected Publications">Selected Publications</heading>
+        <p class="section-note">Only (co-)first author papers are listed. <span>(* indicates equal contribution)</span></p>
+        <div class="section-actions">
+          <a href="publications.html" class="read-more">$ cd ~/publications</a>
+          <a href="https://scholar.google.com/citations?user=gyDPWmIAAAAJ&hl=en" class="read-more">$ cd ~/google-scholar</a>
+        </div>
         <!-- Content will be populated by JS -->
       </td>
     </tr>
@@ -196,7 +273,7 @@
   <tbody>
     <tr>
       <td class="section-padding">
-        <heading>Education</heading>
+        <heading class="glitch" data-text="Education">Education</heading>
         <!-- CUHK (Hong Kong) -->
         <div class="experience-item">
           <img src="./src/logo/CUHK.svg" alt="CUHK Logo" class="experience-logo" />
@@ -230,7 +307,7 @@
   <tbody>
     <tr>
       <td class="section-padding">
-        <heading>Experiences</heading>
+        <heading class="glitch" data-text="Experiences">Experiences</heading>
 
         <!-- Shenzhen Research Institute of Big Data -->
         <div class="experience-item">
@@ -317,7 +394,7 @@
   <tbody>
     <tr>
       <td class="section-padding">
-        <heading>Services</heading>
+        <heading class="glitch" data-text="Services">Services</heading>
         <p>
           <b>Conference Reviewer:</b> AAAI 2025, IJCNN 2026, ICML 2026, NeurIPS 2026
         </p>
@@ -372,27 +449,178 @@
         </tr>
       </tbody>
     </table>
-    <!-- Typewriter loop for name -->
+        </div><!-- /.terminal-body -->
+      </div><!-- /.terminal-window -->
+
+    <script src="src/js/publications.js"></script>
+    <script src="src/js/projects.js"></script>
+    <script src="src/js/news.js"></script>
+    <script src="src/js/render.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const el = document.querySelector("name");
-        if (!el) return;
+      // ── Command Palette ─────────────────────────────────
+      const CMD_NAV_ITEMS = [
+        { name: "About", hint: "#about", icon: "❯", action: () => scrollToSection("about") },
+        { name: "News", hint: "#news", icon: "❯", action: () => scrollToSection("news") },
+        { name: "Selected Publications", hint: "#selected-publications", icon: "❯", action: () => scrollToSection("selected-publications") },
+        { name: "Education", hint: "#education", icon: "❯", action: () => scrollToSection("education") },
+        { name: "Experiences", hint: "#experience", icon: "❯", action: () => scrollToSection("experience") },
+        { name: "Curriculum Vitae", hint: "./src/pdf/yuhuo_cv.pdf", icon: "↗", action: () => window.open("./src/pdf/yuhuo_cv.pdf", "_blank") },
+        { name: "Publications Page", hint: "./publications.html", icon: "↗", action: () => window.open("./publications.html", "_self") },
+      ];
 
-        const fullText = "Yu Huo";
-        const TYPE_SPEED = 85; // ms per character
+      const CMD_QUICK_ITEMS = [
+        { name: "cat ~/research.md", hint: "read research statement", icon: "▶", action: () => window.open("blog/research-statement/index.html", "_self") },
+        { name: "grep publications", hint: "list all papers", icon: "▶", action: () => { scrollToSection("selected-publications"); closePalette(); } },
+        { name: "cd ~/google-scholar", hint: "open Google Scholar", icon: "↗", action: () => window.open("https://scholar.google.com/citations?user=gyDPWmIAAAAJ&hl=en", "_blank") },
+        { name: "cd ~/github", hint: "open GitHub profile", icon: "↗", action: () => window.open("https://github.com/yuhuo03", "_blank") },
+        { name: "mail -to yuhuo", hint: "compose email", icon: "✉", action: () => window.location.href = "mailto:yuhuo@link.cuhk.edu.cn" },
+      ];
 
-        let pos = 0;
-        el.textContent = "";
+      function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (el) { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+        closePalette();
+      }
 
-        function tick() {
-          pos++;
-          el.textContent = fullText.slice(0, pos);
-          if (pos < fullText.length) setTimeout(tick, TYPE_SPEED);
-          // cursor keeps blinking via CSS ::after once done
+      function closePalette() {
+        document.getElementById("cmdBackdrop").classList.remove("open");
+        document.getElementById("cmdInput").value = "";
+        renderCmdResults("");
+      }
+
+      function openPalette() {
+        document.getElementById("cmdBackdrop").classList.add("open");
+        setTimeout(() => document.getElementById("cmdInput").focus(), 80);
+      }
+
+      function togglePalette() {
+        const backdrop = document.getElementById("cmdBackdrop");
+        if (backdrop.classList.contains("open")) {
+          closePalette();
+        } else {
+          openPalette();
+        }
+      }
+
+      function renderCmdResults(query) {
+        const q = query.toLowerCase().trim();
+        const resultsEl = document.getElementById("cmdResults");
+        const allItems = [
+          ...CMD_NAV_ITEMS.map(item => ({ ...item, section: "Navigation" })),
+          ...CMD_QUICK_ITEMS.map(item => ({ ...item, section: "Quick Commands" })),
+        ];
+
+        const filtered = q
+          ? allItems.filter(item => item.name.toLowerCase().includes(q) || item.hint.toLowerCase().includes(q))
+          : allItems;
+
+        const navItems = filtered.filter(i => i.section === "Navigation");
+        const cmdItems = filtered.filter(i => i.section === "Quick Commands");
+
+        let html = "";
+
+        if (navItems.length) {
+          html += '<div class="cmd-palette-section-label">Navigation</div>';
+          navItems.forEach(item => {
+            html += `<div class="cmd-palette-item" data-action="${filtered.indexOf(item)}"><div class="cmd-palette-item-left"><span class="cmd-palette-item-icon">${item.icon}</span><span class="cmd-palette-item-name">${item.name}</span></div><span class="cmd-palette-item-hint">${item.hint}</span></div>`;
+          });
         }
 
-        setTimeout(tick, 400);
+        if (cmdItems.length) {
+          html += '<div class="cmd-palette-section-label">Quick Commands</div>';
+          cmdItems.forEach(item => {
+            html += `<div class="cmd-palette-item" data-action="${filtered.indexOf(item)}"><div class="cmd-palette-item-left"><span class="cmd-palette-item-icon">${item.icon}</span><span class="cmd-palette-item-name">${item.name}</span></div><span class="cmd-palette-item-hint">${item.hint}</span></div>`;
+          });
+        }
+
+        if (!html) {
+          html = `<div class="cmd-palette-empty">No results for <strong>${query}</strong><br/><span style="opacity:0.5;font-size:11px;">Try: about, news, publications, mail</span></div>`;
+        }
+
+        resultsEl.innerHTML = html;
+
+        // Bind click handlers
+        resultsEl.querySelectorAll(".cmd-palette-item").forEach(el => {
+          el.addEventListener("click", () => {
+            const idx = parseInt(el.dataset.action, 10);
+            const item = filtered[idx] || allItems[idx];
+            if (item && item.action) item.action();
+          });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        const backdrop = document.getElementById("cmdBackdrop");
+        const input = document.getElementById("cmdInput");
+        const closeBtn = document.getElementById("cmdClose");
+
+        // Keyboard shortcuts
+        document.addEventListener("keydown", (e) => {
+          if ((e.key === "~" || e.key === "/") &&
+              !e.ctrlKey && !e.altKey && !e.metaKey &&
+              document.activeElement.tagName !== "INPUT" &&
+              document.activeElement.tagName !== "TEXTAREA") {
+            e.preventDefault();
+            togglePalette();
+            return;
+          }
+
+          if (e.key === "Escape") {
+            if (backdrop.classList.contains("open")) {
+              e.preventDefault();
+              closePalette();
+            }
+          }
+        });
+
+        // Backdrop click closes palette
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closePalette();
+        });
+
+        // Close button
+        closeBtn.addEventListener("click", closePalette);
+
+        // Live search
+        input.addEventListener("input", (e) => {
+          renderCmdResults(e.target.value);
+        });
+
+        // Arrow key navigation
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault();
+            const items = [...document.querySelectorAll(".cmd-palette-item")];
+            if (!items.length) return;
+            const current = items.findIndex(i => i.classList.contains("active"));
+            const next = e.key === "ArrowDown"
+              ? (current < items.length - 1 ? current + 1 : 0)
+              : (current > 0 ? current - 1 : items.length - 1);
+            items.forEach(i => i.classList.remove("active"));
+            items[next].classList.add("active");
+            items[next].scrollIntoView({ block: "nearest" });
+          }
+          if (e.key === "Enter") {
+            const active = document.querySelector(".cmd-palette-item.active");
+            if (active) active.click();
+          }
+        });
+
+        renderCmdResults("");
       });
+    </script>
+    <script>
+      function updateStatusbarTime() {
+        const el = document.getElementById('statusbarTime');
+        if (!el) return;
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        el.textContent = h + ':' + m + ':' + s;
+      }
+      updateStatusbarTime();
+      setInterval(updateStatusbarTime, 1000);
     </script>
     <script src="src/js/publications.js"></script>
     <script src="src/js/projects.js"></script>
@@ -406,6 +634,103 @@
         // Actually, my previous edit replaced the rows but left the header.
         // Let's insert a div after the header paragraph.
         
+        const prefersReducedMotion = () => window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function typeAsciiWordmark() {
+          const logo = document.querySelector(".home-ascii-name");
+          if (!logo) return;
+
+          const fullText = logo.textContent;
+          if (prefersReducedMotion()) {
+            logo.classList.add("typing-done");
+            return;
+          }
+
+          logo.textContent = "";
+          logo.classList.add("is-typing");
+
+          let index = 0;
+          function tick() {
+            logo.textContent += fullText.charAt(index);
+            index += 1;
+
+            if (index < fullText.length) {
+              const char = fullText.charAt(index);
+              const delay = char === "\n" ? 68 : 5;
+              window.setTimeout(tick, delay);
+              return;
+            }
+
+            logo.classList.remove("is-typing");
+            logo.classList.add("typing-done");
+          }
+
+          window.setTimeout(tick, 220);
+        }
+
+        function typeHomeCommand() {
+          const output = document.getElementById("homeCommandText");
+          if (!output) return;
+
+          const commands = [
+            "cat ~/research.md",
+            "grep -R \"reliable agents\" ~/work",
+            "python eval_multimodal_reasoning.py",
+            "open --collaboration internship"
+          ];
+
+          if (prefersReducedMotion()) {
+            output.textContent = commands[0];
+            return;
+          }
+
+          let commandIndex = 0;
+          let charIndex = 0;
+          let deleting = false;
+
+          function tick() {
+            const command = commands[commandIndex];
+            output.textContent = command.slice(0, charIndex);
+
+            if (!deleting && charIndex < command.length) {
+              charIndex += 1;
+              window.setTimeout(tick, 46 + Math.random() * 26);
+              return;
+            }
+
+            if (!deleting) {
+              deleting = true;
+              window.setTimeout(tick, 1350);
+              return;
+            }
+
+            if (charIndex > 0) {
+              charIndex -= 1;
+              window.setTimeout(tick, 22);
+              return;
+            }
+
+            deleting = false;
+            commandIndex = (commandIndex + 1) % commands.length;
+            window.setTimeout(tick, 280);
+          }
+
+          window.setTimeout(tick, 950);
+        }
+
+        function staggerTerminalRows() {
+          document
+            .querySelectorAll(".log-entry, .selected-pub-entry, .experience-item")
+            .forEach((row, index) => {
+              row.style.setProperty("--row-index", String(Math.min(index, 12)));
+              row.style.setProperty("--row-delay", `${Math.min(index, 12) * 38}ms`);
+            });
+        }
+
+        typeAsciiWordmark();
+        typeHomeCommand();
+
         const container = document.getElementById("selected-publications-container").querySelector(".section-padding");
         const listDiv = document.createElement("div");
         listDiv.id = "selected-list";
@@ -414,49 +739,9 @@
         renderPublications("selected-list", (pub) => pub.selected, true);
         renderProjects("projects-container");
         renderNews("news-container", 5);
+        staggerTerminalRows();
 
-        const tocLinks = Array.from(document.querySelectorAll(".floating-toc-link"));
-        const sectionLinks = tocLinks.filter(link => link.dataset.section);
-        const sections = sectionLinks
-          .map(link => document.getElementById(link.dataset.section))
-          .filter(Boolean);
-
-        sectionLinks.forEach(link => {
-          link.addEventListener("click", function(event) {
-            event.preventDefault();
-            const target = document.getElementById(link.dataset.section);
-            if (!target) return;
-
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          });
-        });
-
-        const setActiveSection = sectionId => {
-          sectionLinks.forEach(link => {
-            link.classList.toggle("active", link.dataset.section === sectionId);
-          });
-        };
-
-        if (sections.length > 0) {
-          const observer = new IntersectionObserver(
-            entries => {
-              const visibleEntries = entries
-                .filter(entry => entry.isIntersecting)
-                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-              if (visibleEntries.length > 0) {
-                setActiveSection(visibleEntries[0].target.id);
-              }
-            },
-            {
-              rootMargin: "-18% 0px -55% 0px",
-              threshold: [0.15, 0.35, 0.6],
-            }
-          );
-
-          sections.forEach(section => observer.observe(section));
-          setActiveSection(sections[0].id);
-        }
+        // IntersectionObserver removed — nav links no longer present
       });
     </script>
   </body>

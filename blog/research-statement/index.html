@@ -35,9 +35,9 @@
     <a class="back-link" href="../../index.html">Back to Home</a>
     <div class="header-content">
       <h1>Research Statement</h1>
-      <p>Human-AI interaction, Socially Aware NLP, and Future Research Directions</p>
+      <p>LLMs &amp; Agents, Multimodal Reasoning, Code Intelligence, and Future Directions</p>
     </div>
-    <div class="header-meta">Updated: 2025-12-20</div>
+    <div class="header-meta">Updated: 2026-05-11</div>
   </div>
 
   <d-article>
@@ -45,8 +45,10 @@
       <nav>
         <h4>Contents</h4>
         <div><a href="#Overview">Overview</a></div>
-        <div><a href="#human-ai-interaction">Human-AI Interaction</a></div>
-        <div><a href="#socially-aware-nlp">Socially Aware NLP</a></div>
+        <div><a href="#multimodal-reasoning">Multimodal Reasoning</a></div>
+        <div><a href="#code-intelligence">Code Intelligence</a></div>
+        <div><a href="#agentic-systems">Agentic Systems</a></div>
+        <div><a href="#fairness-and-efficiency">Fairness &amp; Efficiency in ML Systems</a></div>
         <div><a href="#future-plan">Future Plan</a></div>
         <div><a href="#references">References</a></div>
       </nav>
@@ -55,31 +57,60 @@
     <section id="Overview">
       <h2>Overview</h2>
       <p>
-        In my early research journey, I was thinking about how machine intelligence could learn from data to predict real-world patterns. This led me to my first research project, in which I sought to train a model to capture the spatio-temporal correlation of delay and model its propagation process within airport networks <a href="#ref-li2024fastca">[1]</a>. At the same time, Large Language Models (LLMs) emerged, demonstrating superior performance by learning from tremendous data, which led me to realize that language serves as a inherently more natural medium for encapsulating human knowledge, reasoning, and interaction. This insight suggests that language technologies act as a bridge to a deeper understanding of humanity itself. This conviction led my subsequent research to focus on <strong>Human-AI Interaction</strong> and <strong>Socially Aware NLP</strong>.
+        My research centers on building large language models (LLMs) and agents that can <strong>reason, retrieve, and act reliably</strong> in complex, knowledge-intensive environments. Beginning with federated learning — where I investigated how to embed group-level fairness constraints into the gradient descent process <a href="#ref-huogf2025">[1]</a> — I gradually broadened my scope from low-level model training dynamics to high-level cognitive capabilities: how models understand visual structures, manipulate code, plan with tools, and adapt through interaction. This journey reflects a core conviction: that the path toward genuinely intelligent systems requires us to address challenges across the entire stack, from training methodology to emergent multi-agent behavior.
       </p>
     </section>
 
-    <section id="human-ai-interaction">
-      <h2>Human-AI Interaction</h2>
+    <section id="multimodal-reasoning">
+      <h2>Multimodal Reasoning</h2>
       <p>
-        My first exploration began with training a financial multimodal LLM <a href="#ref-huang2025openfinllms">[2]</a>. When integrating the model into real human-AI workflows, we identified a critical gap: while the model excelled in static benchmarks, strict accuracy metrics failed to capture the reasoning and coordination capabilities required for dynamic interaction. This discrepancy led me to think that assessing intelligence requires observing how models behave and adapt during interaction, and that LLMs should ultimately learn from these dynamics. To quantify these missing capabilities, I developed a multi-turn, role-playing benchmark in which the LLM alternates between the roles between a domain expert and an assistant. This work was accepted to <em>Findings of NAACL 2025</em> <a href="#ref-yang2025ucfe">[3]</a>. Building on this perspective, I subsequently explored how agents might learn directly from interaction. For the EvoPresent Agent <a href="#ref-liu2025presenting">[4]</a>, I leveraged limited human preference data to train a vision-language model via reinforcement learning, equipping it with human-like aesthetic judgment. I then integrated this model into a self-improving loop that mimics human feedback dynamics. This mechanism allows the agent to iteratively critique, revise, and refine presentation slides, closely mirroring the human creative process.
+        A fundamental limitation of current generative models is their struggle with compositional structural constraints — generative numeracy, attribute binding, and part-level relations. In <strong>Shape-of-Thought (SoT)</strong> <a href="#ref-huo2026shape">[2]</a>, I introduced a visual Chain-of-Thought framework that enables progressive object assembly via interleaved textual plans and rendered intermediate states. Rather than producing explicit geometric representations, the model learns shape-assembly logic through coherent 2D projections without relying on external rendering engines at inference time. I constructed the <em>SoT-26K</em> dataset by converting part-based CAD assets into step-aligned multimodal traces via automated hierarchy decomposition and Blender rendering, and <em>T2S-CompBench</em> to evaluate both structural integrity and trace faithfulness. Fine-tuning a multimodal autoregressive model on these traces yielded an 88.4% component numeracy and 84.8% structural topology — approximately 20% above text-only baselines.
       </p>
       <p>
-        While dynamic interaction improves model behavior, I argue that this is only the first step: <strong>to build truly human-like collaborators, we must also look inward to explore what the structure of the human mind can teach us about designing internal mechanisms of language models.</strong> In this line of work, I focus on abstracting structural principles from human cognition and translating them into new modeling paradigms. For example, in complex visual reasoning, humans do not process information linearly; they engage in a dynamic interplay between perception and reasoning, revisiting visual stimuli when uncertainty arises. Inspired by this cognitive pattern, DMLR <a href="#ref-liu2025reasoningminddynamicmultimodal">[5]</a> introduces a novel reasoning paradigm that interleaves perceptual steps directly into the latent space. By replacing rigid, sequential processing with this dynamic integration, the model effectively mimics human attention shifts and significantly reduces hallucinations. Similarly, SAE-free <a href="#ref-li-etal-2025-feature">[6]</a> takes inspiration from how humans reason using both abstract symbols and natural language. We utilized these symbolic and verbal representations as anchors to disentangle reasoning-specific features from the model's activations. This approach enables targeted steering of the model's internal states, thereby significantly boosting its reasoning performance. This work was accepted to <em>EMNLP 2025</em>.
+        Beyond generation, a parallel challenge is enabling models to reason more effectively in complex visual tasks. In <strong>DMLR</strong> <a href="#ref-liu2025reasoning">[3]</a>, I co-authored a novel reasoning paradigm that interleaves perceptual steps directly into the latent space. By replacing rigid, sequential processing with dynamic integration, the model mimics human attention shifts and significantly reduces hallucinations in visual reasoning tasks.
       </p>
     </section>
 
-    <section id="socially-aware-nlp">
-      <h2>Socially Aware NLP</h2>
+    <section id="code-intelligence">
+      <h2>Code Intelligence</h2>
       <p>
-        Moving beyond the internal cognitive structures of individual agents, my research scope extends to the collective dynamics that emerge when these agents interact. Language forms the most fundamental connections between individuals, and these connections, reinforced through continuous communication and interaction, ultimately give rise to the society we inhabit. Driven by these connections, these interactions among individuals accumulate and eventually manifest as macro-level collective patterns and emergent phenomena. As the foundational capabilities of LLMs continue to strengthen, their performance in role-playing, modeling human decision-making, and participating in social contexts has become increasingly credible. However, this also introduces new challenges: emergent social dynamics in the real world are difficult to observe directly, and we lack a controllable, high-fidelity setting to systematically study <strong>how micro-level decisions can generate macro-level social outcomes</strong>. Motivated by this gap, my subsequent work on TwinMarket <a href="#ref-yang2025twinmarket">[7]</a> builds a controllable and scalable financial market environment in which LLM agents can engage in realistic trading, interaction, and strategic adaptation, enabling us to observe emergent social patterns arising from the accumulation of individual behaviors. TwinMarket successfully reproduced emergent market dynamics like bubbles and crashes and have garnered significant attentions from community. This work was accepted to <em>NeurIPS 2025</em> and received the Best Paper Award at the <em>ICLR 2025 Financial AI Workshop</em>.
+        Beyond perception, reliable code generation and understanding represent a critical frontier for LLM application. My work on <strong>RepoShapley</strong> <a href="#ref-huo2026reposhapley">[4]</a> addresses a core challenge in repository-level code completion: the utility of a retrieved context chunk is often interaction-dependent — some snippets help only when paired with complementary context, while others harm decoding through conflicts. I proposed ChunkShapley, an offline labeling module that estimates signed per-chunk effects via teacher-forced probing, feeds them into a lightweight surrogate game capturing saturation and interference, and computes exact Shapley values for small retrieval sets. The verified keep/drop decisions are then distilled into a single model via discrete control tokens. Experiments across multiple backbones show consistent improvements in completion quality while reducing harmful context and unnecessary retrieval.
+      </p>
+      <p>
+        Understanding <em>why</em> models fail on certain code tasks — even when surface-level accuracy appears similar — led me to co-author <strong>Brewing-to-Resolution</strong> <a href="#ref-guo2026brewing">[5]</a>. Through layer-wise linear probing and Context-Stripped Decoding, we revealed a universal internal lifecycle governing how LLMs process code: models first "brew" the answer — linearly recoverable many layers before it becomes self-decodable — then diverge into one of four causally validated resolution outcomes. Across 16 models and six task families, only 41.5% of cases achieve full resolution, with substantial masses in Overprocessed, Misresolved, and Unresolved categories. These findings indicate that the brewing scaffold is architectural and stable, while resolution success is parametric and variable — a distinction that accuracy-only metrics completely obscure.
+      </p>
+    </section>
+
+    <section id="agentic-systems">
+      <h2>Agentic Systems</h2>
+      <p>
+        Scaling individual model capabilities to multi-agent workflows is the next frontier. In <strong>Group of Skills (GoSkills)</strong> <a href="https://arxiv.org/pdf/2605.06978">[6]</a>, I co-authored an inference-time group-structured skill retrieval framework that changes the agent-facing retrieval object from a flat skill list to a compact, role-labeled execution context. GoSkills builds anchor-centered skill groups from a typed skill graph, bottlenecks the selected group plan into a bounded set of atomic skill payloads, and renders a fixed execution contract with Start, Support, Check, and Avoid fields — without modifying the downstream agent, skill payloads, or execution environment. Evaluated on SkillsBench and ALFWorld, GoSkills preserves visible-requirement coverage under a small skill budget and often improves reward relative to structural retrieval references.
+      </p>
+      <p>
+        Effective agents also require structured reasoning and memory. In ongoing work, I am developing agents that combine retrieval-augmented generation with multi-turn planning and self-critique loops, enabling continuous adaptation in dynamic environments.
+      </p>
+    </section>
+
+    <section id="fairness-and-efficiency">
+      <h2>Fairness &amp; Efficiency in ML Systems</h2>
+      <p>
+        Intelligence at scale must be equitable intelligence. My early work on <strong>FedGF</strong> <a href="#ref-huogf2025">[1]</a> tackled a critical gap in federated learning: prior methods optimized client-level fairness while overlooking demographic-group biases. I proposed embedding demographic-parity constraints into each layer's descent direction, jointly optimizing accuracy, client fairness, and group fairness. FedGF achieves a 78% reduction in group accuracy gaps compared to state-of-the-art methods on FMNIST and CIFAR-10 benchmarks.
+      </p>
+      <p>
+        Similarly, in <strong>q-Boost</strong> <a href="#ref-yan2025qboost">[7]</a>, I co-designed an optimal boost factor algorithm for auto-bidding mechanisms with publisher quality constraints, balancing advertiser and publisher interests within a unified welfare framework. Experiments on Alibaba's AuctionNet dataset demonstrate 2–6% welfare improvements over conventional approaches.
       </p>
     </section>
 
     <section id="future-plan">
       <h2>Future Plan</h2>
       <p>
-        I aim to further explore the social intelligence of LLMs and build <strong>foundation social agents</strong> capable of understanding, adapting, and behaving intelligently within complex <strong>human-centered environments</strong>. My research vision consists of two complementary directions: <strong>1. At the micro level</strong>, I plan to investigate how LLM agents can learn and adapt through interaction. This involves designing learning algorithms that allow agents to continuously update their internal strategies, reason under uncertainty, and exhibit human-like decision-making in dynamic social contexts. <strong>2. At the macro level</strong>, I aim to build interactive agent societies that allow us to study coordination, cooperation, and competition at scale. In such multi-agent environments, we can observe how agents negotiate, form strategies, develop norms, and adapt to the behavior of others. By scaling the complexity of the social environment, I hope to create simulation frameworks in which agents not only interact, but actually learn from the social dynamics themselves.
+        My long-term research agenda is to build <strong>reliable, adaptive AI agents</strong> that operate effectively in open-ended, social, and knowledge-intensive environments. I see two interconnected thrusts:
+      </p>
+      <p>
+        <strong>1. Cognitive agents.</strong> I plan to investigate how LLM-based agents can learn and adapt through interaction — designing algorithms that enable continuous internal strategy updates, principled uncertainty quantification, and human-like decision-making in dynamic social contexts. Key challenges include grounding symbolic reasoning in latent space, building robust world models from noisy observations, and developing verifiable self-correction mechanisms.
+      </p>
+      <p>
+        <strong>2. Multi-agent social intelligence.</strong> At the collective level, I aim to build interactive agent societies that serve as high-fidelity simulations for studying coordination, cooperation, and competition at scale. In such environments, we can observe emergent social patterns — norms, trust, strategic adaptation — arising from the accumulation of individual behaviors. These simulations will provide both scientific insight into collective intelligence and engineering foundations for robust multi-agent deployments.
       </p>
       <figure style="margin: 26px 0; text-align: center;">
         <img src="../img/overview.png" alt="Overview of research directions and future plan" style="max-width: 100%; height: auto;">
@@ -89,41 +120,40 @@
     <section id="references" class="references">
       <h2>References</h2>
       <ol>
-        <li id="ref-li2024fastca">
-          Chi Li, Xixian Qi, <strong>Yuzhe Yang</strong>, Zhuo Zeng, Lianmin Zhang, Jianfeng Mao.
-          <em>FAST-CA: Fusion-based Adaptive Spatial–Temporal Learning with Coupled Attention for Airport Network Delay Propagation Prediction.</em> Information Fusion, 107:102326, 2024.
-          <a href="https://doi.org/10.1016/j.inffus.2024.102326">Link</a>.
+        <li id="ref-huogf2025">
+          <strong>Yu Huo</strong>*, Yating Li*, and Xiaoying Tang.
+          <em>FedGF: Layer-Wise Federated Learning with Group Fairness Guarantees.</em> ICIC 2025.
+          <a href="https://link.springer.com/chapter/10.1007/978-981-95-0011-6_33">Link</a>.
         </li>
-        <li id="ref-huang2025openfinllms">
-          Jimin Huang, Mengxi Xiao, Dong Li, Zihao Jiang, <strong>Yuzhe Yang</strong>, Yifei Zhang, Lingfei Qian, Yan Wang, Xueqing Peng, Yang Ren, Ruoyu Xiang, Zhengyu Chen, Xiao Zhang, Yueru He, Weiguang Han, Shunian Chen, Lihang Shen, Daniel Kim, Yangyang Yu, Yupeng Cao, Zhiyang Deng, Haohang Li, Duanyu Feng, Yongfu Dai, VijayaSai Somasundaram, Peng Lu, Guojun Xiong, Zhiwei Liu, Zheheng Luo, Zhiyuan Yao, Ruey-Ling Weng, Meikang Qiu, Kaleb E Smith, Honghai Yu, Yanzhao Lai, Min Peng, Jian-Yun Nie, Jordan W. Suchow, Xiao-Yang Liu, Benyou Wang, Alejandro Lopez-Lira, Qianqian Xie, Sophia Ananiadou, Junichi Tsujii.
-          <em>Open-FinLLMs: Open Multimodal Large Language Models for Financial Applications.</em> arXiv preprint arXiv:2408.11878, 2025.
-          <a href="https://arxiv.org/abs/2408.11878">Link</a>.
+        <li id="ref-huo2026shape">
+          <strong>Yu Huo</strong>*, Siyu Zhang*, Kun Zeng*, Haoyue Liu, Owen Lee, Junlin Chen, Yuquan Lu, Yifu Guo, Yaodong Liang, and Xiaoying Tang.
+          <em>Shape of Thought: Progressive Object Assembly via Visual Chain-of-Thought.</em> ICML 2026.
+          <a href="https://arxiv.org/abs/2601.21081">Link</a>.
         </li>
-        <li id="ref-yang2025ucfe">
-          <strong>Yuzhe Yang</strong>*, Yifei Zhang*, Yan Hu*, Yilin Guo, Ruoli Gan, Yueru He, Mingcong Lei, Xiao Zhang, Haining Wang, Qianqian Xie, Jimin Huang, Honghai Yu, Benyou Wang.
-          <em>UCFE: A User-Centric Financial Expertise Benchmark for Large Language Models.</em> Findings of NAACL 2025.
-          <a href="https://aclanthology.org/2025.findings-naacl.300/">Link</a>.
-        </li>
-        <li id="ref-liu2025presenting">
-          Chengzhi Liu*, <strong>Yuzhe Yang</strong>*, Kaiwen Zhou, Zhen Zhang, Yue Fan, Yanan Xie, Peng Qi, Xin Eric Wang.
-          <em>Presenting a Paper is an Art: Self-Improvement Aesthetic Agents for Academic Presentations.</em> arXiv preprint arXiv:2510.05571, 2025.
-          <a href="https://arxiv.org/abs/2510.05571">Link</a>.
-        </li>
-        <li id="ref-liu2025reasoningminddynamicmultimodal">
-          Chengzhi Liu*, <strong>Yuzhe Yang</strong>*, Yue Fan, Qingyue Wei, Sheng Liu, Xin Eric Wang.
+        <li id="ref-liu2025reasoning">
+          Chengzhi Liu*, <strong>Yu Huo</strong>*, Yue Fan, Qingyue Wei, Sheng Liu, and Xin Eric Wang.
           <em>Reasoning Within the Mind: Dynamic Multimodal Interleaving in Latent Space.</em> arXiv preprint arXiv:2512.12623, 2025.
           <a href="https://arxiv.org/abs/2512.12623">Link</a>.
         </li>
-        <li id="ref-li-etal-2025-feature">
-          Zihao Li*, Xu Wang*, <strong>Yuzhe Yang</strong>, Ziyu Yao, Haoyi Xiong, Mengnan Du.
-          <em>Feature Extraction and Steering for Enhanced Chain-of-Thought Reasoning in Language Models.</em> EMNLP 2025.
-          <a href="https://aclanthology.org/2025.emnlp-main.552/">Link</a>.
+        <li id="ref-huo2026reposhapley">
+          <strong>Yu Huo</strong>*, Kun Zeng*, Siyu Zhang*, Yuquan Lu, Cheng Yang, Yifu Guo, and Xiaoying Tang.
+          <em>RepoShapley: Shapley-Enhanced Context Filtering for Repository-Level Code Completion.</em> ACL 2026.
+          <a href="https://arxiv.org/abs/2601.03378">Link</a>.
         </li>
-        <li id="ref-yang2025twinmarket">
-          <strong>Yuzhe Yang</strong>*, Yifei Zhang*, Minghao Wu*, Kaidi Zhang, Yunmiao Zhang, Honghai Yu, Yan Hu, Benyou Wang.
-          <em>TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets.</em> NeurIPS 2025.
-          <span style="color: var(--prompt); font-weight: bold;">Best Paper Award</span> (ICLR 2025 Financial AI Workshop).
-          <a href="https://arxiv.org/abs/2502.01506">Link</a>.
+        <li id="ref-guo2026brewing">
+          Yiyang Guo, Shuai Chen, Yuquan Lu, Jiarui Lin, Zongwei Xu, Jin Lin, Siyu Zhang, Cheng Yang, Jiawei Li, Yiming Li, <strong>Yu Huo</strong>, and Ruicheng Wang.
+          <em>From Brewing to Resolution: Tracing the Internal Lifecycle of Code Reasoning in LLMs.</em> COLM 2026 (Submission).
+          <a href="https://openreview.net/forum?id=N81uoJOEZ0">Link</a>.
+        </li>
+        <li id="ref-zeng2026goskills">
+          Kun Zeng*, <strong>Yu Huo</strong>*, Siyu Zhang, Zi Ye, Yuecheng Zhuo, Haoyue Liu, Yuquan Lu, Junhao Wen, and Xiaoying Tang.
+          <em>Group of Skills: Group-Structured Skill Retrieval for Agent Skill Libraries.</em> arXiv preprint arXiv:2605.06978, 2026.
+          <a href="https://arxiv.org/pdf/2605.06978">Link</a>.
+        </li>
+        <li id="ref-yan2025qboost">
+          Huanyu Yan*, <strong>Yu Huo</strong>*, Min Lu, Weitong Ou, Xingyan Shi, Ruihe Shi, and Xiaoying Tang.
+          <em>Optimal Boost Design for Auto-bidding Mechanism with Publisher Quality Constraints.</em> arXiv preprint arXiv:2508.08772, 2025.
+          <a href="https://arxiv.org/abs/2508.08772">Link</a>.
         </li>
       </ol>
     </section>

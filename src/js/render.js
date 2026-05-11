@@ -45,7 +45,7 @@ function generateBibtex(pub) {
     .map(name => name.trim())
     .filter(Boolean)
     .join(" and ");
-  const paperUrl = pub.links.find(link => link.name === "Paper" && link.url)?.url;
+  const paperUrl = pub.links.find(link => link.name === "paper" && link.url)?.url;
   const lines = [
     `@${entryType}{${bibtexKey(pub)},`,
     `  title = {${stripHtml(pub.title)}},`,
@@ -81,7 +81,7 @@ function generateBibtexHtml(pub) {
     .map(name => name.trim())
     .filter(Boolean)
     .join(" and ");
-  const paperUrl = pub.links.find(link => link.name === "Paper" && link.url)?.url;
+  const paperUrl = pub.links.find(link => link.name === "paper" && link.url)?.url;
   const lines = [
     `<span class="bibtex-punct">@</span><span class="bibtex-type">${entryType}</span><span class="bibtex-punct">{</span><span class="bibtex-key">${escapeHtml(bibtexKey(pub))}</span><span class="bibtex-punct">,</span>`,
     renderBibtexField("title", stripHtml(pub.title)),
@@ -108,14 +108,14 @@ function generateBibtexHtml(pub) {
 
 function renderBibtexPanel(pub, bibtexId) {
   const copyButtonId = `${bibtexId}-copy-btn`;
-  return `<div class="abstract-content bibtex-content" id="${bibtexId}" style="display: none;"><div class="bibtex-toolbar"><button type="button" class="badge bibtex-copy-btn" id="${copyButtonId}" data-copy-text="${escapeAttribute(generateBibtex(pub))}" data-default-label="Copy" onclick="copyBibtex('${copyButtonId}'); return false;">Copy</button></div><div class="bibtex-code">${generateBibtexHtml(pub)}</div></div>`;
+  return `<div class="abstract-content bibtex-content" id="${bibtexId}" style="display: none;"><div class="bibtex-toolbar"><button type="button" class="badge bibtex-copy-btn" id="${copyButtonId}" data-copy-text="${escapeAttribute(generateBibtex(pub))}" data-default-label="copy" onclick="copyBibtex('${copyButtonId}'); return false;">Copy</button></div><div class="bibtex-code">${generateBibtexHtml(pub)}</div></div>`;
 }
 
 function renderPublications(containerId, filterFn = () => true, isCompact = false) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  let html = '';
+  let html = isCompact ? '<div class="selected-pub-list">' : '';
   let currentYear = null;
 
   // Sort by year descending, then by original order (implicitly preserved if stable sort or pre-sorted)
@@ -142,35 +142,33 @@ function renderPublications(containerId, filterFn = () => true, isCompact = fals
     }
 
     if (isCompact) {
-        // Compact view (Selected Publications in index.html)
-        // Note: Using existing style from index.html which is simpler
+        const abstractId = `abstract-${index}-index`;
+        const bibtexId = `bibtex-${index}-index`;
         html += `
-        <tr>
-        <td class="section-padding">
+        <article class="selected-pub-entry">
+          <div class="selected-pub-body">
+            <div class="selected-pub-meta">
+              <span class="selected-pub-venue-pill">${pub.venue}</span>
+              <span>${pub.year}${pub.month ? ` · ${pub.month}` : ''}</span>
+              ${pub.note ? `<span>${pub.note}</span>` : ''}
+            </div>
+            <a class="selected-pub-title" href="${pub.links.find(link => link.name === "paper")?.url || '#'}">${pub.title}</a>
             <p class="selected-pub-authors">${formatAuthors(pub.authors)}</p>
-            <b>${pub.title}</b>
-            <br />
-            <i>${pub.venue}</i>
-            <br />
-            ${pub.note ? `${pub.note}<br />` : ''}
-            ${pub.description}
-            <br />
-            ${pub.links.map(link => {
+            <p class="selected-pub-description">${pub.description}</p>
+            <div class="selected-pub-links">
+              ${pub.links.map(link => {
                 let idAttr = link.id ? `id="${link.id}-index"` : '';
                 let badgeHtml = `<a href="${link.url}" class="badge" ${idAttr}>${link.name}</a>`;
-                // Add Abstract badge after Paper badge
-                if (link.name === "Paper" && pub.abstract && pub.abstract.trim() !== "") {
-                  const abstractId = `abstract-${index}-index`;
-                  badgeHtml += `<a href="#" class="badge abstract-badge" onclick="toggleAbstract('${abstractId}'); return false;" id="${abstractId}-btn">Abstract</a>`;
+                if (link.name === "paper" && pub.abstract && pub.abstract.trim() !== "") {
+                  badgeHtml += `<a href="#" class="badge abstract-badge" onclick="toggleAbstract('${abstractId}'); return false;" id="${abstractId}-btn">abstract</a>`;
                 }
                 return badgeHtml;
-            }).join('')}<a href="#" class="badge bibtex-badge" onclick="toggleBibtex('bibtex-${index}-index'); return false;" id="bibtex-${index}-index-btn">BibTeX</a>
+              }).join('')}<a href="#" class="badge bibtex-badge" onclick="toggleBibtex('${bibtexId}'); return false;" id="${bibtexId}-btn">bibtex</a>
+            </div>
             ${pub.abstract && pub.abstract.trim() !== "" ? `<div class="abstract-content" id="abstract-${index}-index" style="display: none;">${pub.abstract}</div>` : ''}
-            ${renderBibtexPanel(pub, `bibtex-${index}-index`)}
-            <br />
-            <br />
-        </td>
-        </tr>
+            ${renderBibtexPanel(pub, bibtexId)}
+          </div>
+        </article>
         `;
     } else {
         // Full view (publications.html)
@@ -196,12 +194,12 @@ function renderPublications(containerId, filterFn = () => true, isCompact = fals
                 ${pub.links.map(link => {
                     let idAttr = link.id ? `id="${link.id}"` : '';
                     let badgeHtml = `<a href="${link.url}" class="badge" ${idAttr}>${link.name}</a>`;
-                    if (link.name === "Paper" && pub.abstract && pub.abstract.trim() !== "") {
+                    if (link.name === "paper" && pub.abstract && pub.abstract.trim() !== "") {
                       const abstractId = `abstract-${index}`;
-                      badgeHtml += `<a href="#" class="badge abstract-badge" onclick="toggleAbstract('${abstractId}'); return false;" id="${abstractId}-btn">Abstract</a>`;
+                      badgeHtml += `<a href="#" class="badge abstract-badge" onclick="toggleAbstract('${abstractId}'); return false;" id="${abstractId}-btn">abstract</a>`;
                     }
                     return badgeHtml;
-                }).join('')}<a href="#" class="badge bibtex-badge" onclick="toggleBibtex('bibtex-${index}'); return false;" id="bibtex-${index}-btn">BibTeX</a>
+                }).join('')}<a href="#" class="badge bibtex-badge" onclick="toggleBibtex('bibtex-${index}'); return false;" id="bibtex-${index}-btn">bibtex</a>
                 ${pub.abstract ? `<div class="abstract-content" id="abstract-${index}" style="display: none;">${pub.abstract}</div>` : ''}
                 ${renderBibtexPanel(pub, `bibtex-${index}`)}
               </div>
@@ -211,7 +209,10 @@ function renderPublications(containerId, filterFn = () => true, isCompact = fals
         `;
     }
   });
-  
+  if (isCompact) {
+    html += '</div>';
+  }
+
   container.innerHTML = html;
 
   // Fetch stars
@@ -243,7 +244,7 @@ function renderProjects(containerId) {
       <br>
       ${proj.description}
       <br>
-      <a href="${proj.url}" class="badge" id="${proj.id}">Code</a>
+      <a href="${proj.url}" class="badge" id="${proj.id}">code</a>
       <br><br>
     `;
   });
@@ -374,7 +375,7 @@ function renderNews(containerId, limit = 5) {
   const hiddenNews = news.slice(limit);
 
   const renderLogEntry = (item) => {
-    return `<div class="log-entry"><span class="log-date">[${item.date}]</span> ${item.content}</div>`;
+    return `<div class="log-entry"><span class="log-date">[${item.date}]</span><span class="log-content">${item.content}</span></div>`;
   };
 
   let html = '<div class="news-container">';
